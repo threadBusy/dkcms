@@ -1,0 +1,127 @@
+<div class="page-body">
+
+    <div class="page-body-main">
+        <table class="page-body-main-table1 table-department">
+            <tr data-id="0" data-leve="0">
+                <td style="width:250px;">部门</td>
+                <td style="width:80px;">主管</td>
+                <td style="width:80px;">人员数量</td>
+                <td style="width:300px;">备注</td>
+                <td>操作</td>
+            </tr>
+            <tr data-id="-1">
+                <td colspan="9" class="td-nodata">暂无</td>
+            </tr>
+        </table>
+        <div class="page-body-main-table-btn-bar">
+            <div>操作:</div>
+            <a href="javascript:void(0)" id="btnNewDepartment">新增部门</a>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-modal" id="new-department-dialog">
+    <div class="fixed-modal-header">
+        <div class="fixed-modal-header-title">新增部门</div>
+        <div class="icon icon-close-btn"></div>
+    </div>
+    <div class="fixed-modal-body">
+        #@printFormItemsWithData(itemList,{})
+    </div>
+</div>
+<script id="jsTmplLine" type="text/x-jquery-tmpl">
+{{each(i,x) list}}
+<tr class="department-item" data-id='{{= x.id}}' data-parent-id='{{= x.parentId}}' data-level='{{= level}}'  data-open='false'>
+   <td class="department-item-title">
+        <span class="tree-node tree-node-padding" style="width:{{= 21*level}}px!important"></span>
+        <span class="tree-node {{= ((i+1)==list.length)?'tree-node-last':''}}"></span>
+        <span class="title">{{= x.title}}<span>
+   </td>
+   <td>{{= x.ownerName}}</td>
+   <td>{{= x.staffCount}} 位</td>
+   <td>{{= x.marks}}</td>
+   <td>
+       <a href="javascript:void(0)" data-id='{{= x.id}}' class='btn-add-sub-department'>新增子部门</a>
+       <a href="javascript:void(0)" data-id='{{= x.id}}' class='btn-delete-department'>删除部门</a>
+   </td>
+</tr>
+{{/each}}
+
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        //删除部门
+        $(document).on('click', '.btn-delete-department', function () {
+            var id = parseInt($(this).attr('data-id'));
+            if (confirm("确认删除？")) {
+                $.invoke("/admin/department/delete", {id: id}, function () {
+                    popupMsg("删除成功", function () {
+                        location.reload();
+                    });
+                });
+            }
+            return false;
+        });
+        $(document).on('click', '.btn-add-sub-department', function () {
+            var id = parseInt($(this).attr('data-id'));
+            modal('new-department-dialog');
+            $('select[name=parent_id] option[value=' + id + ']').attr('selected', true);
+            return false;
+        });
+
+        // 开卡
+        var loadDepartmentList = function (id) {
+            var target = $('tr[data-id=' + id + ']').last();
+            $.invoke('/admin/department/apiGetChild', {id: id}, function (res) {
+                $('tr[data-id="-1"]').remove();
+                var html = $("#jsTmplLine").tmpl({list: res.data, level: 0});
+                target.after(html);
+            });
+        };
+        loadDepartmentList(0);
+        $('#btnNewDepartment').on('click', function () {
+            modal('new-department-dialog');
+        });
+        $('#btnSubmit').on('click', function () {
+            var formData = collectData('#new-department-dialog');
+            if (formData['title'] === '') {
+                popupError("请填写部门名称");
+                return;
+            }
+            $.invoke("/admin/department/save", formData, function () {
+                popupMsg('操作成功', function () {
+                    disModal('cc.dkcms.cms.model-dialog');
+                    location.reload();
+                });
+            });
+        });
+
+        $(document).on('click', '.department-item', function () {
+
+            var self = $(this);
+            var id = self.attr('data-id');
+            var pid = self.attr('data-parent-id');
+            var level = parseInt(self.attr('data-level'));
+            console.log('id:' + id + " pid:" + pid);
+            var target = self.find('.title').prev();
+            if (self.attr('data-open') === "false") {
+                self.attr('data-open', "open");
+                $.invoke('/admin/department/apiGetChild', {id: id}, function (res) {
+                    if (res.data.length > 0) {
+                        target.addClass('tree-node-open');
+                        var html = $("#jsTmplLine").tmpl({list: res.data, level: level + 1});
+                        self.after(html);
+                    } else {
+                        popupMsg("没有子部门");
+                    }
+                });
+            } else {
+                $('tr[data-parent-id=' + id + ']').remove();
+                self.attr('data-open', "false");
+                target.removeClass('tree-node-open');
+            }
+        })
+
+    })
+</script>

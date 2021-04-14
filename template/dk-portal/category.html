@@ -1,0 +1,52 @@
+
+
+
+#include('inc/header.html')
+<div class="wrapper">
+    <div class="homepage-box grid-box">
+        <div class="homepage-box-main category-left">
+            <div class="category-mianbaoxie">
+                <span>当前位置：</span>#mianbaoxie()
+            </div>
+            <div class="category-header">
+                <div class="category-header-title">#(category.categoryName)</div>
+                <div class="category-header-desc">#(category.description??'栏目介绍')
+                </div>
+                #if(category.child.size() > 0)
+                <div class="category-header-child">
+                    #for(x:category.child)
+                    <a href="#(x.categoryUrl)">#(x.categoryName)</a>
+                    #end
+                </div>
+                #end
+            </div>
+            #articleList(categoryId,true,'id','desc',1,7)
+            <div class="category-list-item">
+
+                <div class="category-list-item-left">
+                    <img src="#(item.coverImage)">
+                </div>
+                <div class="category-list-item-right">
+                    <a href="#(item.articleUrl)"> #(item.title)</a>
+                    <p>#(item.summary)</p>
+                    <div class="meta">
+                        <span>来源:#(item.source)</span>
+                        <span>作者:#(item.author)</span>
+                        <span>发布时间:#date(item.publishDate,'y-M-d h:m')</span>
+                        <span>浏览:#(item.click)</span>
+                    </div>
+                </div>
+            </div>
+            #end
+            <div class="pager-wrapper" style="margin:10px;">
+                #pageNav()
+            </div>
+        </div>
+        <div class="homepage-box-side category-right">
+            #@patchNewRank(10)
+            #@patch4(2)
+        </div>
+    </div>
+</div>
+
+#include('inc/footer.html')

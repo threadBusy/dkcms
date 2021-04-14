@@ -1,0 +1,78 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">SEO相关</h3>
+        <div class="right">
+
+        </div>
+    </div>
+    <div class="page-body-main">
+        <div class="grid-box">
+            <div style="width:50%;margin-right:10px;">
+                <table class="table-pro">
+                    <tr>
+                        <td style="width:200px;">SEO相关</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>SiteMap文件生成</td>
+                        <td style="padding:10px 0;">
+
+                            <div id="generateSiteMap" class="btn_primary">
+                                生成SiteMap文件
+                            </div>
+                            <br>
+                            <a href="/sitemap.txt" target="_blank">TXT版本预览</a>
+                            <a href="/sitemap.xml" target="_blank">XML版本预览</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SiteMap站点地图文件说明</td>
+                        <td style="padding:10px 0;">
+                            <a href="https://support.google.com/webmasters/answer/183668" target="_blank">Google</a>
+                            <br><a href="https://ziyuan.baidu.com/college/courseinfo?id=267&page=2#04" target="_blank">百度搜索</a>
+                            <br><a href="http://www.so.com/help/help_3_3.html" target="_blank">360搜索</a>
+                            <br><a href="http://zhanzhang.sogou.com/index.php/help/sitemap" target="_blank">搜狗</a>
+                            <br><a href="https://zhanzhang.sm.cn/open/helpsitemap" target="_blank">神马搜索</a>
+                            <br><a href="https://zhanzhang.toutiao.com/page/outer/docs/26886" target="_blank">头条搜索</a>
+                        </td>
+                    </tr>
+
+
+
+                </table>
+            </div>
+            <div class="grid-box-item-flex1">
+                <table class="table-pro">
+                    <tr>
+                        <td colspan="2">运行日志</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0;">
+                            <div id="echoLog"></div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+#include('_common.html')
+<script type="text/javascript">
+    $(function () {
+
+        $('#generateSiteMap').on("click", function () {
+
+            $('#echoLog').html('');
+            showLog('====================');
+            showLog("连接服务器中");
+            getConnectionThenRun('generateSiteMap', {});
+
+        })
+
+    })
+</script>
+
+

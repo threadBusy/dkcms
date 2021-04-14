@@ -1,0 +1,51 @@
+<div class="page-body">
+
+    <div class="page-body-top">
+        <h3 class="left">系统设置</h3>
+        <div class="right">
+            <div data-href="/admin/setting/index" class="btn_primary"> 返回</div>
+        </div>
+    </div>
+    <div class="page-body-main dk-auto-form" data-action="/admin/setting/save">
+        <input type="hidden" name="id" value="#(setting.id)"/>
+        <table class="table1">
+            <tr>
+                <td>系统配置</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>配置</td>
+                <td>
+                    <span>#(setting.name)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>键值</td>
+                <td>
+                    <span>#(setting.skey)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>值</td>
+                <td>
+                    <input value="#(setting.svalue)" required="required" type="text" name="svalue"
+                           class="input_02" style="width: 400px;">
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                            <span id="js_submit " class="btn_primary dk-auto-submit-btn">
+                                <button type="button">保存</button>
+                            </span>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+</div>

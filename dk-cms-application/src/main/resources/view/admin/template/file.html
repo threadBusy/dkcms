@@ -1,0 +1,39 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="page-body-top-left">模板文件管理</h3>
+        <div class="page-body-top-center">
+            <span>当前模板：</span>#(template.templateName)
+            <span>模板路径：</span>#(template.templatePath)
+        </div>
+        <div class="page-body-top-right" style="display: none">
+            <a data-href="/admin/template/add" class="btn_primary"> 新增模板文件</a>
+        </div>
+    </div>
+    <div class="page-body-main">
+
+
+        <table class="table-pro">
+            <tr>
+                <td>模板</td>
+                <td style="width: 180px;">修改时间</td>
+                <td style="width:100px;">操作</td>
+            </tr>
+
+            #if(list.size()==0)
+            <tr>
+                <td colspan="10">无数据</td>
+            </tr>
+            #end
+
+            #for(item:list)
+            <tr>
+                <td>#(item.fileName)</td>
+                <td>#date(item.lastModify,'yyyy-MM-dd HH:mm:ss')</td>
+                <td>
+                    <a class="btn_01" data-href="/admin/template/edit?fileName=#(item.fileName)">编辑</a>
+                </td>
+            </tr>
+            #end
+        </table>
+    </div>
+</div>

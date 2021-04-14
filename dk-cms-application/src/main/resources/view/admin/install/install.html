@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统安装-#(Constant.SOFT_NAME)-#(Constant.SOFT_VERSION)</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/install.css"/>
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+
+</head>
+<body>
+<div class="bg-wrap">
+    <div class="install-out-box">
+        <div class="header-wrap">
+            系统安装-#(Constant.SOFT_NAME)-#(Constant.SOFT_VERSION)
+        </div>
+        <div class="install-box-wrap">
+            <div class="install-step-box">
+                <div class="install-step-item s"> 第一步：填写安装参数</div>
+                <div class="install-step-item"> 第二步：系统安装</div>
+                <div class="install-step-item"> 第三步：安装完成</div>
+            </div>
+            <div class="install-box" id="install-form3" style="display: none">
+                <div class="install-box-title mb-30">第三步：恭喜您,安装成功</div>
+                <div class="install-form3-box">
+                    <p>尊敬的用户你好：</p>
+                    <p style="text-indent: 2rem">非常感谢你选择#(Constant.SOFT_NAME) #(Constant.SOFT_VERSION)。</p>
+                    <p style="text-indent: 2rem">再接下来的使用中，如果遇到问题，您可以使用一下方法寻求解决:</p>
+                    <a href="https://dkcms.cc" target="_blank">1.多客官网查看使用文档（官网连接）</a>
+                    <a href="https://dkcms.cc"  target="_blank">2.欢迎加入多客用户 QQ 群社区：734023716</a>
+                    <a href="https://dkcms.cc"  target="_blank">3.商业版用户可联系商务客服</a>
+
+                    <p style="text-align: right;margin-top:10px;">#(Constant.SOFT_NAME) 全体成员</p>
+                </div>
+            </div>
+            <div class="install-box" id="install-form2" style="display: none">
+                <div class="install-box-title mb-30">第二步：系统自动安装</div>
+                <div class="install-form2-box">
+                    <div class="loader"></div>
+                    <div>系统安转中，请稍等...</div>
+                    <div style="color:#777;">总耗时预计小于30秒</div>
+                </div>
+            </div>
+            <div class="install-box" id="install-form1">
+                <div class="install-box-title mb-30">第一步：填写安装参数</div>
+                <div class="install-box-input ">
+                    <label for="host">Mysql数据库服务器 IP</label>
+                    <input id="host" type="text" name="host" placeholder="请输入数据库服务器 IP" value="127.0.0.1"/>
+                </div>
+                <div class="install-box-input ">
+                    <label for="username">Mysql数据库用户名</label>
+                    <input id="username" type="text" name="username" placeholder="请输入数据库用户名" value="root"/>
+                </div>
+                <div class="install-box-input ">
+                    <label for="password">Mysql数据库密码</label>
+                    <input id="password" type="text" name="password" placeholder="请输入数据库密码" value=""/>
+                </div>
+                <div class="install-box-input ">
+                    <label for="dbName">Mysql数据库名</label>
+                    <input id="dbName" type="text" name="dbName" placeholder="请输入数据库名"/>
+                </div>
+                <div class="install-box-input ">
+                    <label for="adminName">初始管理员账号</label>
+                    <input id="adminName" type="text" name="adminName"
+                           placeholder="请输入初始管理员账号" value="dkadmin"/>
+                </div>
+                <div class="install-box-input ">
+                    <label for="adminPwd">初始管理员密码</label>
+                    <input id="adminPwd" type="text" name="adminPwd"
+                           placeholder="请输入初始管理员面貌" value=""/>
+                </div>
+                <div class="install-box-link ">
+                    <label for="isAgree" style="display: none">是否同意 使用协议</label>
+                    <input type="checkbox" name="isAgree" id="isAgree">
+                    <p>勾选此项，表示同意<a href="http://dkcms.cc/page/user-agreement.html" target="_blank">《#(Constant.SOFT_NAME)-#(Constant.SOFT_VERSION)用户使用协议》</a>
+                    </p>
+                </div>
+                <div class="install-box-msg mb-10"></div>
+                <div class="install-box-btn">
+                    <a href="javascript:void(0)" class="login-btn" id="btnInstall">检查配置是否正确</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var collectData = function (s) {
+            var data = {};
+            $(s).find('input[type=text],textarea,select')
+                .each(function () {
+                    var self = $(this);
+                    data[self.attr('name')] = self.val();
+                });
+            $(s).find('input[type=checkbox]')
+                .each(function () {
+                    var self = $(this);
+                    data[self.attr('name')] = self.prop("checked")
+                });
+            return data;
+        };
+        var showTip = function (id) {
+            var html = '';
+            if (id !== '') {
+                html = '请填写' + $('label[for=' + id + ']').html();
+            }
+            $('.install-box-msg').html(html);
+        };
+
+        var invoke = function (api, data, success, fail) {
+            $.post(api, data, function (res) {
+                if (res.code === 0) {
+                    success && success(res);
+                } else {
+                    fail && fail(res);
+                }
+            });
+        };
+
+        var currentStep = 1;
+        var switchStep = function (step) {
+            currentStep = step;
+            $('.install-box').hide();
+            $('.install-step-item.s').removeClass('s');
+            $('#install-form' + step).show();
+            $('.install-step-item').eq(step - 1).addClass('s');
+
+        };
+
+        var isTest = false;
+        $('#btnInstall').on("click", function () {
+            var data = {};
+            if (!isTest) {
+                data = collectData('#install-form1');
+                for (var k in data) {
+                    if (data.hasOwnProperty(k) && data[k] === '') {
+                        showTip(k);
+                        return;
+                    }
+                }
+                if (!data['isAgree']) {
+                    showTip('isAgree');
+                    return;
+                }
+            } else {
+                switchStep(2);
+                data = collectData('#install-form1');
+            }
+            showTip('');
+            invoke("/install", data, function (res) {
+                if (!isTest) {
+                    $('.install-box-msg').html("参数正确，点击按钮开始安装");
+                    $('#btnInstall').html("点我开始安装");
+                    isTest = true;
+                } else {
+                    switchStep(3);
+                    console.log("展示第三步，安装完成了");
+                    console.log(res);
+                }
+            }, function (res) {
+                if (currentStep === 1) {
+                    $('.install-box-msg').html(res.msg);
+                } else if (currentStep === 2) {
+                    $('.install-form2-box').html("安装遇到错误:" + res.msg);
+
+                }
+            });
+        });
+    })
+</script>
+
+</body>
+</html>

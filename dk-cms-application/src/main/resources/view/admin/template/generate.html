@@ -1,0 +1,136 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">页面生成</h3>
+        <div class="right">
+
+        </div>
+    </div>
+    <div class="page-body-main">
+        <div class="grid-box">
+            <div style="width:50%;margin-right:10px;">
+                <table class="table-pro">
+                    <tr>
+                        <td style="width:100px;">生成页面</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>页面生成规则</td>
+                        <td>
+                            #(pathPolicy)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>站点首页</td>
+                        <td>
+                            <div class="btn_primary btnPageGenerate" data-cmd="generateIndex">
+                                生成首页
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>栏目页面</td>
+
+                        <td>
+                            请选择栏目<br>
+                            #adminCategorySelect('categoryId')
+                            <br><br>
+                            <div class="btn_primary btnPageGenerate" data-cmd="generateCategory">
+                                生成该栏目首页
+                            </div>
+                            <div class="btn_primary btnPageGenerate" data-cmd="generateCategory" data-with-child="true">
+                                生成该 栏目和子栏目 首页
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>内容页面</td>
+
+                        <td>
+                            请选择要生成的栏目<br>
+                            #adminCategorySelect('categoryIdForContent')
+                            <br><br>
+                            <div class="btn_primary btnPageGenerate " data-cmd="generateContent">
+                                生成该栏目内容页
+                            </div>
+                            <div class="btn_primary btnPageGenerate " data-cmd="generateContent" data-with-child="true">
+                                生成该栏目和子栏目内容页
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>单页面</td>
+                        <td>
+                            请选择页面<br>
+                            #adminSinglePageSelect('pageId')
+
+                            <br><br>
+                            <div class="btn_primary btnPageGenerate" data-cmd="generatePage">
+                                生成该页面
+                            </div>
+
+                            <div class="btn_primary btnPageGenerate" data-cmd="generateAllPage">
+                                生成全部单页面
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>全站</td>
+                        <td>
+                            <div class="btn_primary btnPageGenerate" data-cmd="generateSite">
+                                生成全站栏目页 和 内容页
+                            </div>
+                        </td>
+                    </tr>
+
+
+                </table>
+            </div>
+            <div class="grid-box-item-flex1">
+                <table class="table-pro">
+                    <tr>
+                        <td colspan="2">运行日志</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0;">
+                            <div id="echoLog"></div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+#include('_common.html')
+<script type="text/javascript">
+    $(function () {
+        $('.btnPageGenerate').on("click", function () {
+            var self = $(this);
+            var cmd = self.data('cmd');
+
+            var withChild = !!self.data('with-child');
+            $('#echoLog').html('');
+            showLog('====================');
+            showLog('页面生成开始');
+
+            var payload = {};
+            if (cmd === "generateCategory") {
+                payload = {categoryId: $('select[name=categoryId]').val(), withChild: withChild};
+            } else if (cmd === "generatePage") {
+                payload = {pageId: $('select[name=pageId]').val()};
+            } else if (cmd === 'generateContent') {
+                payload = {categoryId: $('select[name=categoryIdForContent]').val(), withChild: withChild};
+            }
+            showLog("连接服务器中");
+            getConnectionThenRun(cmd, payload);
+
+        })
+
+    })
+</script>
+

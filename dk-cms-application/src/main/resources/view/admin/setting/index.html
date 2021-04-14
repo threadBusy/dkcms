@@ -1,0 +1,106 @@
+<style type="text/css">
+    .group-list {
+        display: flex;
+        flex-direction: row;
+        padding: 10px 0;
+        margin-bottom: 10px;
+        background: #f4f5f9;
+        border-top: #f1f1f1;
+    }
+
+    .group-item:first-child {
+        border: none;
+    }
+
+    .group-item {
+        cursor: pointer;
+        font-size: 12px;
+        padding: 0px 20px;
+        line-height: 16px;
+        margin: 0;
+        border-left: 1px solid #888;
+    }
+
+    .group-item.s {
+        font-weight: bold;
+    }
+</style>
+
+
+<div class="page-body">
+
+    <div class="page-body-top">
+        <h3 class="left">系统设置</h3>
+        <div class="right">
+            <a href="#/admin/setting/add" class="btn_primary">新增系统设置</a>
+        </div>
+
+    </div>
+    <div class="page-body-top">
+        <div class="group-list">
+            #for(item:groupList)
+            <div class="group-item"
+                 data-group='#(item)'>#(item=='readonly'?'系统内置':item)
+            </div>
+            #end
+        </div>
+    </div>
+    <div class="page-body-main">
+
+        <table class="table-pro">
+            <tr>
+                <td style="width:180px;">配置名称</td>
+
+                <td style="max-width:300px;">当前值</td>
+                <td style="width:160px;">变量名</td>
+
+                <td style="width:180px;">默认值</td>
+                <td style="width:70px;">&nbsp;</td>
+            </tr>
+
+            #for(item:list)
+            <tr data-group="#(item.sgroup)">
+                <td>#(item.name)</td>
+
+                <td>#(item.svalue)</td>
+                <td>#('#')getSetting('#(item.skey)')</td>
+                <td>#(item.sdefault)</td>
+                <td>
+                    #if(item.sgroup!='readonly' && item.sgroup!='default')
+                    <div class="btn_01"
+                         data-href="/admin/setting/edit?id=#(item.id)">修改
+                    </div>
+                    #end
+                </td>
+            </tr>
+            #end
+        </table>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var changeGroup = function (g) {
+            $('.group-item.s').removeClass('s');
+            $('.group-item[data-group=' + g + ']').addClass('s');
+            $('tr[data-group]').css('display', 'none');
+            $('tr[data-group=' + g + ']').css('display', "table-row");
+        };
+
+        $('.group-item').on("click", function () {
+            changeGroup($(this).attr('data-group'));
+        });
+        changeGroup($('.group-item:first').attr('data-group'));
+
+        $('#js_submit').on('click', function () {
+            if ($('input[name=title]').val() === '') {
+                NDUO.popup('标题不能为空');
+                return false;
+            }
+
+            $('#post_form').submit();
+        });
+    });
+</script>
+

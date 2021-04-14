@@ -1,0 +1,17 @@
+#define patch1(categoryId)
+<div class="patch-common">
+    <div class="patch-header">
+        #categoryDetail(categoryId)
+        <div class="patch-header-title">#(category.categoryName)</div>
+        <div class="patch-header-more">
+            <a href="#(category.categoryUrl)">更多</a>
+        </div>
+        #end
+    </div>
+    <div class="patch-body">
+        #contentList(categoryId,true)
+        <a href="#(item.articleUrl)">#(item.title)</a>
+        #end
+    </div>
+</div>
+#end

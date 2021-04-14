@@ -1,0 +1,78 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    min-height: 100%;
+    font-size: 14px;
+    color: #444;
+    background-color: #fff;
+
+}
+
+a {
+    cursor: pointer;
+    color: #383838;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+body {
+    font-family: "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    color: #333;
+}
+
+.hidden {
+    display: none;
+}
+
+.mt-10 {
+    margin-top: 10px!important;
+}
+
+.mt-20 {
+    margin-top: 20px!important;
+}
+
+.mt-30 {
+    margin-top: 30px!important;
+}
+
+.mb-10 {
+    margin-bottom: 10px!important;
+}
+
+.mb-20 {
+    margin-bottom: 20px!important;
+}
+
+.mb-30 {
+    margin-bottom: 30px!important;
+}
+
+.grid-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.grid-wrap {
+    flex-wrap: wrap;
+}
+
+.grid-box-column {
+    flex-direction: column!important;
+}
+
+.grid-box-item-flex1 {
+    flex: 1;
+}
+
+.flex-start {
+    justify-content: flex-start;
+}
+
+.flex-end {
+    justify-content: flex-end;
+}

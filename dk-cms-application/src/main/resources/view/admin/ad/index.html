@@ -1,0 +1,54 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">广告位管理</h3>
+        <div class="right">
+
+            <a href="#/admin/ad/add" class="btn_primary">
+                新增一个广告位
+            </a>
+        </div>
+    </div>
+
+    <div class="page-body-main">
+
+        <table class="table-pro">
+            <tr>
+                <td style="width:60px;">#getMessage('noun.id')</td>
+                <td style="width:200px;">#getMessage('noun.title')</td>
+                <td>描述</td>
+                <td style="width:100px;">类目</td>
+                <td style="width:100px;">尺寸</td>
+                <td style="width:150px;">#getMessage('noun.op') </td>
+            </tr>
+
+            #if(list.size() == 0)
+            <td colspan="10">#getMessage('noun.noData')</td>
+            </tr>
+            #end
+
+            #for(item:list)
+            <tr>
+                <td>#(item.id)</td>
+                <td>#(item.name)</td>
+                <td>#(item.description)</td>
+                <td>#(categoryMap.get(item.categoryId))</td>
+                <td>#(item.width) x #(item.height)</td>
+
+                <td>
+                    <a class="icon-btn icon-btn-code" title="代码"
+                       href="#/admin/ad/code?id=#(item.id)"></a>
+                    <a class="icon-btn icon-btn-edit" title="编辑"
+                       href="#/admin/ad/edit?id=#(item.id)"></a>
+                    <a class="icon-btn icon-btn-delete" title="删除"
+                       href="#/admin/ad/delete?id=#(item.id)"
+                       onclick="return confirm('确定?')"></a>
+                </td>
+            </tr>
+            #end
+
+
+        </table>
+
+    </div>
+
+</div>

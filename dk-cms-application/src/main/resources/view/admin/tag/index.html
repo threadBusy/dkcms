@@ -1,0 +1,117 @@
+<style>
+    a:hover {
+        text-decoration: none;
+    }
+
+    tr:hover .preview-btn {
+        display: inline-block;
+    }
+
+    .preview-btn {
+        display: none;
+        margin-left: 10px;
+        padding: 0 5px;
+        width: 12px;
+        height: 12px;
+        background: url("/image/icon/preview.png") no-repeat center;
+        background-size: contain;
+        vertical-align: middle;
+    }
+
+    .tagContent {
+        padding: 4px;
+    }
+
+    .tagContent a {
+        margin-right: 20px;
+    }
+
+    .table1 tr td {
+        padding-right: 4px;
+    }
+</style>
+
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">标签</h3>
+        <div class="right">
+            <a data-href="/admin/tag/add" class="btn_primary">
+                新增标签
+            </a>
+        </div>
+    </div>
+
+
+    <div class="page-body-main">
+        <table class="table-pro">
+            <tr>
+                <td style="width:50px;">编号</td>
+                <td style="width: 180px">标签</td>
+                <td style="width: 80px;">类型</td>
+                <td>相关内容</td>
+                <td style="width: 80px">模板标签</td>
+                <td style="width: 100px;">&nbsp;</td>
+            </tr>
+
+            #if(list.size()==0)
+            <tr>
+                <td colspan="10">无数据</td>
+            </tr>
+            #end
+
+            #for(item:list)
+            <tr>
+                <td>#(item.id)</td>
+                <td>#(item.tagName)</td>
+                <td>#((item.tagType==1)?'文章标签':'栏目标签')</td>
+
+                #if(item.tagType==2)
+                <td class="tagContent">
+                    #for(cate:item.categoryVoList)
+                    <a target="_blank" href="#/admin/category/edit?id=#(cate.id)">
+                        #(cate.categoryName) [#(cate.id)]
+                    </a>
+                    #end
+                    #if(item.categoryVoList.size()==0)
+                    无相关栏目
+                    #end
+
+                </td>
+                #end
+                #if(item.tagType==1)
+                <td class="tagContent">
+                    #for(article:item.articleVoList)
+                    <a target="_blank" href="#/admin/content/edit?id=#(article.id)">
+                        #(article.title) [#(article.id)]
+                    </a><br>
+                    #end
+                    #if(item.articleVoList.size()==0)
+                    无相关内容
+                    #end
+                </td>
+                #end
+                <td>
+                    #('#')tag(#(item.id))
+                </td>
+                <td>
+
+                    <a class="icon-btn icon-btn-edit" title="编辑"
+                       href="#/admin/tag/edit?id=#(item.id)"></a>
+
+                    <a class="icon-btn icon-btn-delete" title="删除"
+                       href="#/admin/tag/delete?id=#(item.id)"
+                       onclick="return confirm('确定?')"></a>
+
+                </td>
+            </tr>
+            #end
+
+        </table>
+        #adminPageNav()
+    </div>
+
+
+</div>
+
+
+

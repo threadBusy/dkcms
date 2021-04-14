@@ -1,0 +1,26 @@
+#include('inc/category-header.html')
+
+
+<div class="wrapper grid-box mt-20">
+    <div class="grid-box-item-flex1">
+        <div class="content-list">
+            #contentList({categoryId:categoryId})
+            <div class="content-list-item">
+                <a href="#(item.articleUrl)" class="content-list-item-right-title">#(item.title)</a>
+                <span>#date(item.publishDate,'M月d日')</span>
+
+            </div>
+            #end
+        </div>
+
+        <div class="page-nav">
+            #pageNav()
+        </div>
+    </div>
+    <div style="width: 300px;margin-left: 20px">
+        #include('inc/category-side.html')
+    </div>
+</div>
+
+
+#include('inc/footer.html')

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>#(global.setting.siteTitle)</title>
+    <link type="text/css" href="/template/blog-zhixin/assets/zhixin.css" rel="stylesheet"/>
+</head>
+<body>
+<nav>
+    <div class="wrapper nav">
+        <a class="logo" href="/">
+            <img src="#(global.setting.siteLogo)" alt="#(global.setting.siteTitle)"/>
+        </a>
+
+        <div class="nav-right">
+            <a href="#homePageUrl()" class="s">日志首页</a>
+
+            #categoryList()
+
+            <a class="page" href="#(item.categoryUrl)">#(item.categoryName)</a>
+            #end
+        </div>
+    </div>
+    #if(pageType!='SITE_HOMEPAGE')
+    <div class="wrapper mbx">
+        #mianbaoxie()
+    </div>
+    #end
+
+</nav>

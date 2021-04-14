@@ -1,0 +1,46 @@
+#define patchScrollTopLoopNews(categoryId)
+
+
+<div class="patch-top-loop-scroll txtScroll-top">
+    <div class="patch-header">
+        <div class="patch-header-title">滚动头条</div>
+        <div class="patch-header-more">
+            <a href="#">更多</a>
+        </div>
+    </div>
+
+    <div class="bd">
+        <ul class="infoList">
+            #contentList(categoryId)
+            <li>
+                <a href="#(item.articleUrl)" target="_blank">#(item.title)
+                </a>
+                <span class="date">#date(item.publishDate,'y-M-d')</span>
+            </li>
+            #end
+        </ul>
+    </div>
+</div>
+
+<script id="jsID" type="text/javascript">
+    $(function () {
+        jQuery(".txtScroll-top").slide({
+            titCell: ".hd ul",
+            mainCell: ".bd ul",
+            autoPage: false,
+            effect: 'topLoop',
+            autoPlay: true,
+            scroll: 1,
+            vis: 5,
+            easing: 'swing',
+            delayTime: 500,
+            pnLoop: true,
+            trigger: 'mouseover',
+            mouseOverStop: true
+        });
+    })
+
+
+</script>
+
+#end

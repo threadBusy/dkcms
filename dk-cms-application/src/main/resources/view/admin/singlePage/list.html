@@ -1,0 +1,68 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">单页面</h3>
+        <div class="right">
+            <a data-href="/admin/singlePage/add" class="btn_primary">
+                新增页面
+            </a>
+        </div>
+    </div>
+
+    <div class="page-body-main">
+
+        <table class="table-pro">
+            <tr>
+                <td style="width:50px;">编号</td>
+                <td style="width:200px">页面名称</td>
+                <td>模板</td>
+                <td style="width: 180px;">创建时间</td>
+                <td style="width: 170px">操作</td>
+            </tr>
+
+            #if(list.size()==0)
+            <tr>
+                <td colspan="10">无页面</td>
+            </tr>
+            #end
+
+            #for(item:list)
+            <tr>
+                <td>#(item.id)</td>
+                <td>#(item.name)</td>
+
+                <td>#(item.template)</td>
+                <td>#date(item.createdAt,'yyyy-MM-dd HH:MM')</td>
+
+                <td>
+                    <a class="icon-btn icon-btn-preview" target="_blank" href="/site/page?pageId=#(item.id)"></a>
+                    <a class="icon-btn-edit icon-btn" data-href="/admin/singlePage/edit?pageId=#(item.id)"></a>
+                    <a class="icon-btn icon-btn-delete" data-href="/admin/singlePage/delete?pageId=#(item.id)"
+                       onclick="return confirm('确定?')"></a>
+                </td>
+            </tr>
+            #end
+
+
+        </table>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('.sort_id').blur(function () {
+            var id = $(this).attr('data-id');
+            var val = $(this).val();
+            var oldval = $(this).attr('data-old-sort');
+            if (val == oldval) {
+                return;
+            }
+            $.get('', {id: id, val: val}, function (ret) {
+                    popup('排序已保存 ' + ret);
+                }
+            )
+
+        });
+    })
+</script>
+

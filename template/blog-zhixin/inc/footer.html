@@ -1,0 +1,64 @@
+<footer>
+    <div class="footer-top">
+        <div class="wrapper footer-top-inner">
+            <div class="item-in-footer">
+                <p>最新内容</p>
+                <div class="item-in-footer-content article-list-in-footer">
+                    #articleRank({type:'latest',limit:4,withChild:true})
+                    <a href="#(item.articleUrl)">#(item.title)</a>
+                    #end
+                </div>
+            </div>
+            <div class="item-in-footer">
+                <p>内容标签</p>
+                <div class="item-in-footer-content tag-list-in-footer">
+                    #categoryList(0)
+                    <a href="#(item.categoryUrl)">#(item.categoryName)</a>
+                    #end
+
+                    #tagList()
+                    <a href="#(item.tagUrl)">#(item.tagName)</a>
+                    #end
+                </div>
+            </div>
+            <div class="item-in-footer">
+                <p>栏目分类</p>
+                <div class="item-in-footer-content category-list-in-footer">
+                    <a href="#homePageUrl()">首页</a>
+                    #categoryList(0)
+                    <a href="#(item.categoryUrl)">#(item.categoryName)(#(item.totalCount))</a>
+                    #if(item.child.size()>0)
+
+                    #for(c:item.child)
+                    <a href="#(c.categoryUrl)" style="padding-left:20px;font-size:.875rem;">-
+                        #(c.categoryName)(#(c.totalCount))</a>
+                    #end
+
+                    #end
+                    #end
+                    #pageList()
+                    <a href="#(item.pageUrl)">#(item.name)</a>
+                    #end
+                </div>
+            </div>
+            <div class="item-in-footer">
+                <p>联系</p>
+                <div class="item-in-footer-content category-list-in-footer">
+                    <a href="#">qq群：xxx</a>
+                    <a href="#">qq群：在线客服</a>
+                    <a href="#">qq群：在线客服</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="wrapper footer-bottom-inner">
+            <p>Copyright © 2020 <span>#(global.setting.siteTitle)</span><br>
+                Powered by <a href="http://dkcms.cc" target="_blank"> #(global.cmsName) #(global.cmsVersion)</a></p>
+        </div>
+    </div>
+
+</footer>
+</body>
+</html>

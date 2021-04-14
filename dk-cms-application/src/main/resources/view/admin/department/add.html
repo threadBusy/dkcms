@@ -1,0 +1,24 @@
+<div class="page-body">
+    <div class="page-body-main">
+        <div class="form-group" id="commonForm">
+            <div class="form-group-header">
+                <span>新增门店</span>
+            </div>
+
+            #@printFormItemsWithData(itemList,{})
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnSubmit').on('click', function () {
+            var data = collectData('#commonForm');
+           $.invoke('/admin/store/save', data, function () {
+                popupMsg("保存成功", function () {
+                    location.hash = "/admin/store/manager";
+                });
+            });
+        });
+    });
+</script>

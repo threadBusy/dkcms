@@ -1,0 +1,109 @@
+<style type="text/css">
+
+
+    .crtTpl {
+        color: #3179cb;
+        font-weight: bold;
+    }
+
+    tr.tpl-item {
+        height: auto !important;
+
+    }
+
+    tr.tpl-item.s {
+    }
+
+
+    tr.tpl-item td .img {
+        display: block;
+        padding: 2px;
+        width: 90px;
+        height: 60px;
+        border: 1px solid #dadada;
+        background-color: #f1f1f1;
+        background-size: 90%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .gray {
+        font-size: 16px;
+        font-weight: bold;
+        color: #444;
+        margin-bottom: 10px;
+    }
+    tr.tpl-item.s .gray{
+        color:#3179cb;
+    }
+
+    .tag-list {
+        margin-top: 20px;
+    }
+
+    .tag-list span {
+        border-radius: 4px;
+        background: #f1f1f1;
+        padding: 2px 5px;
+        margin-right: 5px;
+    }
+
+</style>
+
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">模板管理</h3>
+        <div class="right">
+            <a data-href="/admin/template/refresh" class="btn_primary">刷新列表</a>
+        </div>
+    </div>
+    <div class="page-body-main">
+        <input type="hidden" name="currentTemplateName" value="#(currentTemplateName)">
+        <table class="table-pro v-align-top">
+            <tr>
+                <td>预览</td>
+                <td>模板介绍</td>
+                <td>作者</td>
+                <td>路径</td>
+                <td style="min-width: 100px;">引擎类型</td>
+                <td>切换</td>
+            </tr>
+            #for(item:list)
+            <tr class="#(item.templatePath == currentTemplateName?'s':'') tpl-item">
+                <td>
+                    <a class="img" style="background-image: url('/template/#(item.templatePath)/screenshot.png')"
+                       href="/template/#(item.templatePath)/screenshot.png" target="_blank"></a>
+                </td>
+                <td>
+                    <span class="gray">#(item.templateName)</span><br>
+                    <span>#(item.description)</span>
+                    <div class="tag-list">
+                        #for(tag:item.tagList)
+                        <span>#(tag)</span>
+                        #end
+                    </div>
+                </td>
+                <td>
+                    <span class="gray">#(item.author)</span>
+                    <br>
+                    <span>#(item.authorInfo)</span>
+                </td>
+                <td><span>${tplBase}/#(item.templatePath)</span></td>
+                <td>#(item.type)</td>
+
+                #if(item.templatePath == currentTemplateName)
+                <td>
+                    <span class="crtTpl">当前模板</span>
+                </td>
+                #else
+                <td>
+                    <a data-href="/admin/template/change?tpl=#(item.templatePath)" class="btn_primary">使用此模板</a>
+                </td>
+                #end
+            </tr>
+            #end
+        </table>
+    </div>
+</div>
+
+

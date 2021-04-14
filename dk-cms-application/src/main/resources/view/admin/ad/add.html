@@ -1,0 +1,82 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">广告位管理</h3>
+        <div class="right">
+            <a href="#/admin/ad/index" class="btn_primary">返回</a>
+        </div>
+    </div>
+    <div class="page-body-main dk-auto-form" data-action="/admin/ad/save" data-success="/admin/ad/list">
+        <input type="hidden" name="id" value="#(ad.id)">
+        <table class="table-pro">
+            <tr>
+                <td colspan="2">#(action=='edit'?'编辑':'新建')广告</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>名称</td>
+                <td>
+                    <input type="text" name="name" value="#(ad.name)" class="input_02" data-require="请填写广告位名称"/>
+                </td>
+            </tr>
+            <tr>
+                <td>所在分类</td>
+                <td>
+                    <select name="category_id" class="select_01" data-require="请选择一个分类">
+                        #for(item:categoryMap)
+                        <option value="#(item.key)">#(item.value)</option>
+                        #end
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>描述</td>
+                <td>
+                    <textarea name="description" class="textarea_01">#(ad.description)</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>宽度</td>
+                <td>
+                    <input type="text" name="width" value="#(ad.width)" class="input_02" style="width:80px">
+                    px 像素
+                </td>
+            </tr>
+            <tr>
+                <td>高度</td>
+                <td>
+                    <input type="text" name="height" value="#(ad.height)" class="input_02"
+                           style="width:80px"> px 像素
+                </td>
+            </tr>
+            <tr>
+                <td>广告图片</td>
+                <td>
+                    #adminFileUploader('content_image', ad.contentImage)
+                    <cms:fileUploader name="contentImage" value="#(ad.contentImage)"/>
+                </td>
+            </tr>
+            <tr>
+                <td>内容</td>
+                <td>
+                    <textarea name="content" class="textarea_01">#(ad.content)</textarea>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <div class="btn_primary dk-auto-submit-btn">
+                        保存
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+        </form>
+
+    </div>
+</div>
+
+

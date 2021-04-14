@@ -1,0 +1,39 @@
+<div class="page-body">
+    <div class="page-body-main dk-auto-form" data-action="/admin/api/tokenAdd" data-success="/admin/api/index">
+
+        <table class="table-pro">
+            <tr>
+                <td>新增Token</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Token用途</td>
+                <td>
+                    <input type="text" name="name" class="input_02" data-require="token用途不能缺少">
+                </td>
+            </tr>
+            <tr>
+                <td>有效期</td>
+                <td>
+                    <select class="select_01" name="valid_days">
+                        <option value="1">1天</option>
+                        <option value="7">1周</option>
+                        <option value="30">30个月</option>
+                        <option value="0">不过期</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <div class="btn_primary dk-auto-submit-btn">保存
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+</div>

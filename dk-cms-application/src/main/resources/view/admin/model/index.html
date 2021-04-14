@@ -1,0 +1,81 @@
+<style>
+    a:hover {
+        text-decoration: none;
+    }
+
+    tr:hover .preview-btn {
+        display: inline-block;
+    }
+
+    .preview-btn {
+        display: none;
+        margin-left: 10px;
+        padding: 0 5px;
+        width: 12px;
+        height: 12px;
+        background: url("/image/icon/preview.png") no-repeat center;
+        background-size: contain;
+        vertical-align: middle;
+    }
+</style>
+
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">自定义模型</h3>
+        <div class="right">
+            <a href="#/admin/model/add" class="btn_primary">新增模型
+
+            </a>
+        </div>
+    </div>
+
+
+    <div class="page-body-main">
+        <table class="table-pro v-align-top">
+            <tr>
+                <td style="width:30px;">编号</td>
+                <td>名称</td>
+                <td>字段</td>
+                <td style="width: 200px;">&nbsp;</td>
+            </tr>
+
+            #if(list.size()==0)
+            <tr>
+                <td colspan="10">无数据</td>
+            </tr>
+            #end
+
+            #for(item:list)
+            <tr>
+                <td>#(item.id)</td>
+                <td>#(item.modelName)</td>
+                <td>
+                    <table class="table-pro">
+                        <tr>
+                            <td>字段变量</td>
+                            <td>字段名称</td>
+                            <td>类型</td>
+                            <td>默认值</td>
+                            <td>选项</td>
+                        </tr>
+                        #for(field:item.fieldVoList)
+                        <tr>
+                            <td>#(field.fieldName)</td>
+                            <td>#(field.name)</td>
+                            <td>#(field.typeName)</td>
+                            <td>#(field.defaultValue)</td>
+                            <td>#(field.options)</td>
+                        </tr>
+                        #end
+                    </table>
+                </td>
+                <td>
+                    <a class="icon-btn icon-btn-edit" title="编辑"
+                       href="#/admin/model/edit?id=#(item.id)"></a>
+                </td>
+            </tr>
+            #end
+        </table>
+    </div>
+</div>
+

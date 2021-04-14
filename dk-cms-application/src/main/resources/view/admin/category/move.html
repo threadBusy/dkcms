@@ -1,0 +1,69 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">移动 #getMessage('noun.category') </h3>
+        <div class="right">
+            <a data-href="/admin/category/list" class="btn_primary">返回栏目列表</a>
+        </div>
+    </div>
+    <div class="page-body-main dk-auto-form" data-action="/admin/category/move" data-success="/admin/category/list">
+        <input type="hidden" name="id" value="#(category.id)">
+        <table class="table1">
+            <tr>
+                <td style="width:200px;">移动栏目</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>栏目名称</td>
+                <td>#(category.categoryName) [id:#(category.id)]</td>
+            </tr>
+            <tr>
+                <td>简介</td>
+                <td>#(category.description)</td>
+            </tr>
+            <tr>
+                <td>当前所属父栏目</td>
+                <td>#(parentCategory.categoryName) [id:#(category.parentId)]</td>
+            </tr>
+            <tr>
+                <td>请选择新父栏目</td>
+                <td>
+                    #adminCategorySelect('parentId', category.parentId)
+                    <cms:categorySelect name="parentId" select="#(category.parentId)">
+                    </cms:categorySelect>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    <div class="btn_primary dk-auto-submit-btn">
+                        保存
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#enterPage > .m-radio-item').click(function () {
+            $('.m-radio-item.s').removeClass('s');
+            $(this).addClass("s");
+            $("input[name=enterPage]").val($(this).attr('data-value'));
+        })
+
+        $('#js_submit').click(function () {
+            $('#post_form').submit();
+        });
+    });
+</script>
+

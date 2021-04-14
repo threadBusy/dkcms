@@ -1,0 +1,22 @@
+#define patch4(categoryId)
+<div class="patch4 patch-common">
+    <div class="patch-header">
+        #categoryDetail(categoryId)
+        <div class="patch-header-title">#(category.categoryName)</div>
+        <div class="patch-header-more">
+            <a href="#(category.categoryUrl)">更多</a>
+        </div>
+        #end
+    </div>
+    <div class="patch-body">
+        #articleList(categoryId)
+
+        <a href='#(item.articleUrl)'>
+            <img src="#(item.coverImage)"/>
+            <div>#(item.title)</div>
+        </a>
+        #end
+    </div>
+
+</div>
+#end

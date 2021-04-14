@@ -1,0 +1,78 @@
+<div class="page-body">
+
+    <div class="page-body-top">
+        <h3 class="left">功能设置</h3>
+
+
+    </div>
+
+    <div class="page-body-main dk-auto-form" data-action="/admin/setting/setting">
+        <table class="table-pro">
+            <tr>
+                <td style="width:180px;">设置项</td>
+                <td style="max-width:300px;">选项</td>
+                <td style="width:160px;">说明</td>
+            </tr>
+            <tr>
+                <td>是否开启用户注册</td>
+                <td>
+                    <select class="select_01" name="can_register">
+                        <option value="true" #(can_register=='true'?'selected="selected"':'')>允许</option>
+                        <option value="false" #(can_register=='false'?'selected="selected"':'')>不允许</option>
+                    </select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>是否允许用户评论</td>
+                <td>
+
+                    <select class="select_01" name="can_comment">
+                        <option value="true" #(can_comment=='true'?'selected="selected"':'')>允许评论</option>
+                        <option value="false" #(can_comment=='false'?'selected="selected"':'')>不允许评论</option>
+                    </select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>模板文件不存在时</td>
+                <td>
+
+                    <select class="select_01" name="use_default_template">
+                        <option value="true" #(use_default_template=='true'?'selected="selected"':'')>使用默认模板</option>
+                        <option value="false" #(use_default_template=='false'?'selected="selected"':'')>报错模板文件不存在
+                        </option>
+                    </select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>生成静态页面时路径</td>
+                <td>
+
+                    <select class="select_01" name="static_page_file_path_policy">
+                        <option value="date_as_path"
+                                #(static_page_file_path_policy=='date_as_path'?'selected="selected"':'')>
+                            日期作为文件目录
+                        </option>
+                        <option value="category_as_path"
+                                #(static_page_file_path_policy=='category_as_path'?'selected="selected"':'')>
+                            栏目名称作为文件目录
+                        </option>
+                    </select>
+                </td>
+                <td></td>
+            </tr>
+
+
+            <tr>
+                <td>是否允许用户评论</td>
+                <td>
+                    <div class="btn_primary dk-auto-submit-btn">保存</div>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+</div>

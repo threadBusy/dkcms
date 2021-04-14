@@ -1,0 +1,56 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">搜索引擎授权文件 robots.txt 配置</h3>
+        <div class="right">
+
+        </div>
+    </div>
+    <div class="page-body-main dk-auto-form"
+         data-action="/admin/template/robots" data-success="/admin/template/robots">
+        <table class="table-pro">
+            <tr>
+                <td style="width:200px;">robots.txt</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>查看文件</td>
+                <td>
+                    #if(fileExists)
+                    <a href="/robots.txt" target="_blank">查看文件内容</a>
+                    #else
+                    文件尚未生成
+                    #end
+
+                </td>
+            </tr>
+            <tr>
+                <td>文件内容</td>
+                <td>
+                    <textarea name="content" class="textarea_01" data-require="内容不能为空">#(content)</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>样例</td>
+                <td>
+                    <pre>User-agent: *
+Disallow:
+Crawl-delay: 120
+Sitemap: #getSetting('siteHost')/sitemap.txt
+Sitemap: #getSetting('siteHost')/sitemap.xml
+</pre>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+
+                <td style="padding:10px 0;">
+                    <div class="btn_primary dk-auto-submit-btn">保存内容</div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+
+

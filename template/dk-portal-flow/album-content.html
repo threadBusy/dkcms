@@ -1,0 +1,207 @@
+#include('inc/header.html')
+<div class="wrapper category-mianbaoxie mt-10">
+    <span>当前位置：</span>#mianbaoxie()
+</div>
+<div class="wrapper grid-box mt-10">
+    <div class="page-main">
+
+        <div class="content-main">
+            <div class="content-header">
+                <div class="content-header-title">#(article.title)</div>
+                <div class="content-header-meta">
+                    <span>来源:#(article.source)</span>
+                    <span>作者:#(article.author)</span>
+                    <span>发布时间:#date(article.publishDate,'y-M-d h:m')</span>
+                    <span>浏览:#(article.click)</span></div>
+
+            </div>
+            <div class="content-body">
+                <img src="#(article.coverImage)" style="width: 100%;">
+            </div>
+            #if(article.content)
+            <div class="content-body">
+                #(article.content)
+            </div>
+            #end
+
+            <div class="content-neighbor">
+                #if(article.previousArticle != null)
+                <a href="#(article.previousArticle.articleUrl)">上一篇 : #(article.previousArticle.title)</a>
+                #end
+
+                #if(article.nextArticle != null)
+                <a href="#(article.nextArticle.articleUrl)">下一篇 : #(article.nextArticle.title)</a>
+                #end
+            </div>
+
+        </div>
+
+        <div class="content-main content-relevant mt-10">
+            <div class="content-relevant-header">相关推荐阅读</div>
+            <div class="content-relevant-body">
+                #articleRelevant(article.id)
+                <a href="#(item.articleUrl)">#(item.title)
+                    #if(item.click > 100)
+                    <span>点赞 ： #(item.click)</span>
+                    #else
+                    <span>#date(item.publishDate,'y-M-d')</span>
+
+                    #end
+
+                </a>
+                #end
+            </div>
+
+        </div>
+        <div class="content-main mt-10">
+            <div class="content-post">
+                <textarea name="comment" placeholder="请填写您的评论内容"></textarea>
+                <div class="content-post-user" id="postBox" style="display: none">
+                    <div class="content-post-user-logo">
+                        <img src="/assets/image/default-user-logo.png">
+                    </div>
+                    <div class="content-post-user-nick"></div>
+                    <div class="content-post-btn" id="btnPost">发布</div>
+
+                    <a class="content-post-btn" href="/logout">退出登录</a>
+                </div>
+                <div class="content-post-user" id="loginBox">
+
+                    <a class="content-post-btn" href="/login">发表评论，需要登录账号</a>
+                    <a class="content-post-btn" href="/register">还没有账号，去注册账号</a>
+                </div>
+            </div>
+            <div class="content-comment-list">
+                <!-----
+                 <div class="content-comment">
+                     <div class="content-comment-user">
+                         <div class="content-comment-user-logo">
+                             <img src="">
+                         </div>
+                         <div class="content-comment-user-name">有课</div>
+                         <div class="content-comment-at">发布于: 2021-03-19 09:51:24</div>
+                     </div>
+                     <div class="content-comment-body">我是评论诶容</div>
+                 </div>
+                --->
+            </div>
+        </div>
+    </div>
+    <div class="page-side ">
+        <!--sep--->
+
+        <div style=" background-color: #fff" class="side-article-list">
+            <div class="category-box-item-header">
+                <div class="category-box-item-header-title">热门推荐</div>
+                <div class="category-box-item-header-more">
+                </div>
+            </div>
+            #articleRank(10)
+            <div class="content-list-item" style="width: 100%">
+                <div class="content-list-item-left">
+                    <div class="img" style="background-image: url('#(item.coverImage)')"></div>
+                </div>
+                <div class="content-list-item-right">
+                    <a href="#(item.articleUrl)" class="content-list-item-right-title">#(item.title)</a>
+                    <div class="content-list-item-right-meta">
+                        <span>点击：#(item.click)</span>
+                        <span>评论: 12</span>
+                    </div>
+
+                </div>
+
+            </div>
+            #end
+
+
+        </div>
+        <!--sep--->
+
+        <div class="side-item">
+            <div class="side-item-header">
+                <div class="side-item-header-title">推荐栏目</div>
+                <div class="side-item-header-more">更多</div>
+            </div>
+            <div class="side-item-body recommend-category-list">
+                #categoryList(0)
+                <a href="#(item.categoryUrl)">#(item.categoryName)</a>
+                #end
+
+            </div>
+        </div>
+        <!--sep--->
+
+        <div class="side-item">
+            #@patchSideArticleSlide(4)
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.post('/site/getComment', {id: '#(article.id)'}, function (res) {
+
+            var html = "";
+            if (res.code === 1) {
+                html =
+                    '<div class="content-comment">\n' +
+                    '  <div class="content-comment-body">获取评论内容出错</div>\n' +
+                    '</div>';
+            } else {
+
+                for (var i in res.data) {
+                    var c = res.data[i];
+
+                    html +=
+                        '<div class="content-comment">\n' +
+                        '                    <div class="content-comment-user">\n' +
+                        '                        <div class="content-comment-user-logo">\n' +
+                        '                            <img src="' + c['logo'] + '">\n' +
+                        '                        </div>\n' +
+                        '                        <div class="content-comment-user-name">' + c['nickname'] + '</div>\n' +
+                        '                        <div class="content-comment-at">发布于: ' + c['publishAtStr'] + '</div>\n' +
+                        '                    </div>\n' +
+                        '                    <div class="content-comment-body">' + c['content'] + '</div>\n' +
+                        '                </div>';
+                }
+            }
+
+
+            $('.content-comment-list').append(html);
+
+
+        })
+        $('#btnPost').click(function () {
+            var comment = $('textarea[name=comment]').val();
+            if (!comment) {
+                alert('请填写评论内容');
+                return;
+            }
+
+            var data = {
+                comment: comment,
+                id: '#(article.id)',
+            }
+            $.post("/site/saveComment", data, function (res) {
+                if (res.code === 1) {
+                    alert(res.msg);
+                } else {
+                    alert("评论已提交");
+                }
+            })
+        })
+        $.post('/site/userInfo', {}, function (res) {
+            if (res.code === 0) {
+                $('#loginBox').hide();
+                $('#postBox').show();
+                $('#postBox').find('img').attr('src', res.data.logo);
+                $('#postBox').find('.content-post-user-nick').text(res.data.nickname);
+            } else {
+                $('#loginBox').show();
+                $('#postBox').hide();
+            }
+        })
+    })
+</script>
+
+#include('inc/footer.html')

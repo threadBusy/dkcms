@@ -1,0 +1,6 @@
+# true 值支持热加载
+undertow.devMode=true
+undertow.port=9000
+undertow.host=127.0.0.1
+undertow.resourcePath = webapp,webroot,src/main/webapp,dk-cms-application/src/main/webapp
+undertow.debug=true

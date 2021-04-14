@@ -1,0 +1,91 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">自定义 数据模型 [<span>#(model.modelName)</span>]</h3>
+        <div class="right">
+            #if(action=="editField")
+            <a href="#/admin/model/edit?id=#(model.id)" class="btn_primary">新增字段</a>
+            #end
+            <a href="#/admin/model/index" class="btn_primary">返回</a>
+        </div>
+    </div>
+
+    <div class="page-body-main grid-box">
+        <div style="width: 50%;margin-right:10px;">
+            <table class="table-pro">
+                <tr>
+                    <td>名称</td>
+                    <td>字段</td>
+                    <td>类型</td>
+                    <td>可选值</td>
+                    <td>默认值</td>
+                    <td style="width: 70px;">&nbsp;</td>
+                </tr>
+                #for(item:model.fieldVoList)
+                <tr>
+                    <td>#(item.name)</td>
+                    <td>#(item.fieldName)</td>
+                    <td>#(item.typeName)</td>
+                    <td>#(item.options)</td>
+                    <td>#(item.defaultValue)</td>
+                    <td>
+                        <a class="icon-btn icon-btn-edit" title="修改"
+                           href="#/admin/model/editField?id=#(item.id)"></a>
+                        <a class="icon-btn icon-btn-delete" title="删除"
+                           onclick="return confirm('确定要删除?')"
+                           href="#/admin/model/deleteField?id=#(item.id)"></a>
+
+                    </td>
+                </tr>
+                #end
+            </table>
+        </div>
+        <div class="grid-box-item-flex1 dk-auto-form "
+             data-action="/admin/model/saveField"
+             data-success="#(action=='editField'?'/admin/model/editField?id='+field.id:'/admin/model/edit?id='+model.id)">
+            <input type="hidden" name="model_id" value="#(model.id)">
+            <input type="hidden" name="id" value="#(field.id)">
+            <table class="table-pro">
+                <tr>
+                    <td colspan="2" style="width: 50px;">
+                        #(action=='editField'?'修改字段信息':'新增字段')
+                    </td>
+                </tr>
+                <tr>
+                    <td>名称</td>
+                    <td><input type="text" value="#(field.name)"
+                               data-require="名称不能为空"
+                               class="input_02" name="name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>字段</td>
+                    <td><input type="text"
+                               data-require="字段不能为空"
+                               value="#(field.fieldName)" class="input_02" name="field_name"></td>
+                </tr>
+                <tr>
+                    <td>类型</td>
+                    <td>
+                        #adminUserModelFieldTypeSelect('type',field.type)
+                    </td>
+                </tr>
+                <tr>
+                    <td>选项</td>
+                    <td><input type="text" class="input_02" name="options" value="#(field.options)"> (逗号分割)</td>
+                </tr>
+                <tr>
+                    <td>默认值</td>
+                    <td><input type="text" class="input_02" name="default_value" value="#(field.defaultValue)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <div class="btn_primary dk-auto-submit-btn">保存</div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>

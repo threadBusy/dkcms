@@ -1,0 +1,47 @@
+<footer>
+    <div class="wrapper footer-top">
+        <div class="footer-top-item">
+            <div class="footer-logo">
+                #if(global.setting.siteLogo)
+                <img src="#(global.setting.siteLogo)">
+                #else
+                #(global.setting.siteTitle)
+                #end
+            </div>
+            <p class="footer-txt">DkCms 企业建站最佳选择</p>
+            <p class="footer-txt">工业和信息化部备案：京ICP备XXXXXX号</p>
+        </div>
+        <div class="footer-top-item">
+            <div class="footer-top-item-title">网站导航</div>
+            <div class="footer-top-item-links">
+                #articleRank({withChild:true,limit:5})
+                <a href="#(item.articleUrl)">#(item.title)</a>
+                #end
+            </div>
+        </div>
+        <div class="footer-top-item">
+            <div class="footer-top-item-title">关于我们
+            </div>
+            <div class="footer-top-item-links">
+                #pageList()
+                <a href="#(item.pageUrl)">#(item.name)</a>
+                #end
+            </div>
+        </div>
+        <div class="footer-top-item">
+            <div class="footer-top-item-title">联系方式</div>
+            <div class="footer-top-item-links">
+                客服QQ： <br>
+                邮箱：<br>
+                地址：<br>
+                微信公众号
+            </div>
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+#include('../patch/patch1.html')
+#include('../patch/patch2.html')
+#include('../patch/patch3.html')
+#include('../patch/patch4.html')
+#include('../patch/patch-headline.html')
+#include('../patch/patch-scroll-top-loop-news.html')
+#include('../patch/imageSlide.html')
+#include('../patch/patch-news-rank.html')
+#include('../patch/patchByTagId.html')
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <title>#getSetting('siteTitle')</title>
+
+    <meta name="Keywords" content="#getSetting('siteSeoKeywords')">
+    <meta name="Description" content="#getSetting('siteSeoDescription')">
+    <link type="text/css" href="/template/dk-portal/dk-common.css" rel="stylesheet"/>
+    <link type="text/css" href="/template/dk-portal/dk-portal.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="/template/dk-portal/js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="/template/dk-portal/js/jquery.SuperSlide.2.1.3.js"></script>
+</head>
+<body>
+<header class="grid-box wrapper">
+    <div class="logo">
+        #if(global.setting.siteLogo)
+        <img src="#(global.setting.siteLogo)">
+        #else
+        #(global.setting.siteTitle)
+        #end
+    </div>
+    <div class="search-bar grid-box-item-flex1">
+        <div class="search-bar-kw">
+            <a href="/site/search?kw=DKCMS">DKCMS</a>
+            <a href="/site/search?kw=多客cms">多客cms</a>
+            <a href="/site/search?kw=javacms排行榜">javacms排行榜</a>
+            <a href="/site/search?kw=cms建站">cms建站</a>
+        </div>
+        <div class="search-bar-input">
+            <input type="text" name="keywords" value="#(searchKeyword??'请输入搜索词')">
+            <input type="button" value="搜索" id="searchBtn">
+            <script type="text/javascript">
+                $('input[name=keywords]').focus(function () {
+                    if ($(this).val() === '请输入搜索词') {
+                        $(this).val('');
+                    }
+                }).blur(function () {
+                    if ($(this).val() === '') {
+                        $(this).val('请输入搜索词');
+                    }
+                })
+                $('#searchBtn').click(function () {
+                    var kw = $('input[name=keywords]').val();
+                    if (kw !== '') {
+                        location.href = '/site/search?kw=' + kw;
+                    }
+                })
+            </script>
+        </div>
+    </div>
+    <div class="header-right">
+        <img src="/template/dk-portal/img/qrcode.png">
+        <p>关注 dkcms 官网二维码</p>
+
+    </div>
+</header>
+<nav class="main-nav">
+    <div class="wrapper grid-box nav-list">
+        <a href="#homePageUrl()">首页</a>
+        #categoryList(0)
+        <a href="#(item.categoryUrl)">#(item.categoryName)</a>
+        #end
+    </div>
+</nav>

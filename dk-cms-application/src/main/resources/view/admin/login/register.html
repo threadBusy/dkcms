@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>#getSetting('siteTitle')-用户注册-#(Constant.SOFT_NAME)-#(Constant.SOFT_VERSION)</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/login.css"/>
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+
+</head>
+<body>
+<form method="post" id="login-form" style="display: inline">
+    <div class="bg-wrap">
+        <div class="header-wrap"></div>
+
+        <div class="login-box-wrap">
+            <div class="login-box">
+                <div class="login-box-title mb-20">用户注册</div>
+                <div class="login-box-input mb-20">
+                    <label for="username">登录邮箱:</label>
+                    <input id="username" type="text" name="username" placeholder="请输入登录邮箱" autocomplete="off"/>
+                </div>
+                <div class="login-box-input mb-20">
+                    <label for="password">登录密码:</label>
+                    <input id="password" type="text" name="password" placeholder="请输入登录密码" autocomplete="off"/>
+                </div>
+                <div class="login-box-input mb-20">
+                    <label for="password2">确认密码:</label>
+                    <input id="password2" type="text" name="password2" placeholder="请再次输入登录密码" autocomplete="off"/>
+                </div>
+                <div class="login-box-link mb-30">
+                    <a href="/login">已有账号,去登录</a>
+                    <a href="javascript:void(0)" style="display: none">忘记密码</a>
+                </div>
+                <div class="login-box-msg mb-10">&nbsp;</div>
+                <div class="login-box-btn">
+                    <a href="javascript:void(0)" class="login-btn">注册账号</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-wrap"></div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(function () {
+        var msg = function (msg, cb) {
+            $('.login-box-msg').html(msg);
+            setTimeout(function () {
+                $('.login-box-msg').html('&nbsp;');
+                cb && cb();
+            }, 2000);
+        }
+        $('.login-btn').on('click', function () {
+            var data = {
+                u: $('input[name=username]').val(),
+                p: $('input[name=password]').val(),
+                p2: $('input[name=password2]').val(),
+            };
+            if (data.u === '' || data.p === '') {
+                msg('请填写用户名和密码');
+                return;
+            }
+            if (data.p !== data.p2) {
+                msg('两次密码不同');
+                return;
+            }
+            $.post(location.href, data, function (res) {
+                if (res.code === 0) {
+                    msg("注册成功,现在去登录", function () {
+                        location.href = "/login";
+                    })
+                } else {
+                    $('.login-box-msg').html("错误:" + res.msg);
+                }
+            });
+        })
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">单页面</h3>
+        <div class="right">
+            <a data-href="/admin/singlePage/list" class="btn_primary">返回
+            </a>
+        </div>
+    </div>
+    <div class="page-body-main dk-auto-form" data-action="/admin/singlePage/save" data-success="/admin/singlePage/list">
+
+        <input type="hidden" name="id" value="#(page.id)">
+        <table class="table-pro">
+            <tr>
+                <td>
+                    #(action=='edit'?'编辑':'新增')单页面
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>页面名称</td>
+                <td>
+                    <input type="text" name="name" value="#(page.name)"
+                           class="input_02 w500" data-require="标题不能为空">
+                </td>
+            </tr>
+            <tr>
+                <td>页面URL(permalink)</td>
+                <td>
+                    <input type="text" name="permalink" value="#(page.permalink)" class="input_02 w500">
+                </td>
+            </tr>
+
+            <tr>
+                <td>模板</td>
+                <td>
+                    #adminTemplateFileSelect('template',page.template)
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>内容</td>
+                <td>
+                    <div style="width:500px;margin: 5px 0px;">
+                        #adminRichText('content',page.content)
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <td>SEO简介</td>
+                <td>
+                            <textarea class="textarea_01" style="width: 600px; height: 80px;"
+                                      name="seo_description">#(page.seoDescription)</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>SEO关键字</td>
+                <td>
+                            <textarea class="textarea_01" style="width: 600px; height: 140px;"
+                                      name="seo_keywords">#(page.seoKeywords)</textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                            <span class="btn_primary dk-auto-submit-btn">
+                                <button type="button">保存</button>
+                            </span>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+</div>
+
+

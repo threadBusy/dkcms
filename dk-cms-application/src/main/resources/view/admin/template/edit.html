@@ -1,0 +1,61 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">模板管理 : #(fileName)</h3>
+        <div class="right">
+            <a data-href="/admin/template/file" class="btn_primary">返回
+
+            </a>
+            <span class="btn_primary">保存</span>
+        </div>
+    </div>
+    <div class="page-body-main" style="height: 500px;">
+        <textarea name="templateContent" id="templateContent">#(templateContent)</textarea>
+        <input type="hidden" name="fileName" id="fileName" value="#(fileName)"></input>
+        <!-- Create a simple CodeMirror instance -->
+        <link rel="stylesheet" href="/assets/vendor/codemirror/lib/codemirror.css">
+        <style type="text/css">
+            .CodeMirror {
+                border: 1px solid #eee;
+                height: 500px;
+                font-size: 12px;
+            }
+        </style>
+        <link rel="stylesheet" href="/assets/vendor/codemirror/theme/xq-dark.css">
+        <script src="/assets/vendor/codemirror/lib/codemirror.js"></script>
+        <script src="/assets/vendor/codemirror/mode/javascript/javascript.js"></script>
+        <script src="/assets/vendor/codemirror/addon/selection/active-line.js"></script>
+
+        <table class="table1">
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                            <span id="js_submit" class="btn_primary">
+                                <button type="button">保存</button>
+                            </span>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var editor = CodeMirror.fromTextArea(templateContent, {
+            lineNumbers: true,
+            theme: 'xq-dark',
+            styleActiveLine: true,
+            matchBrackets: true
+        });
+        editor.setSize("auto", "400px");
+        $('#js_submit').click(function () {
+            $.post("/admin/template/updateFile", {
+                fileName: $('input[name=fileName]').val(),
+                templateContent: editor.getValue()
+            }, function (res) {
+                NDUO.popup(res.msg);
+            });
+        })
+    })
+</script>

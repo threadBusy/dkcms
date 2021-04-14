@@ -1,0 +1,27 @@
+#include('inc/header.html')
+<div class="wrapper category-mianbaoxie mt-10">
+    #mianbaoxie()
+</div>
+<div class="wrapper grid-box mt-10">
+    <div class="page-main category-left">
+
+        <div class="photo-list">
+            #articleList(categoryId,true,'id','desc',1,7)
+            <a class="photo-list-item" href="#(item.articleUrl)">
+
+                <img src="#(item.coverImage)">
+                <div> #(item.title)</div>
+            </a>
+            #end
+        </div>
+
+        <div class="pager-wrapper" style="margin:10px;">
+            #pageNav()
+        </div>
+    </div>
+    <div class="page-side category-right">
+        #include('inc/aside.html')
+    </div>
+</div>
+
+#include('inc/footer.html')

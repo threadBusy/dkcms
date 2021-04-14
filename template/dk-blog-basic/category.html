@@ -1,0 +1,32 @@
+<div th:replace="inc/header"></div>
+<div class="category-mianbaoxie">
+    <a href="javascript:void(0)">当前位置</a>
+    <a cms:navbar></a>
+</div>
+
+<h2 th:text="'栏目：'+${category.categoryName}"></h2>
+<main>
+    <article>
+        <div cms:articleList includeSubCategory="true" class="article">
+            <a th:href="${item.articleUrl}">
+                <h3 class="article-title" th:text="${item.title}"></h3>
+            </a>
+            <p>
+                <span th:text="${item.summary}" style="margin-right: 20px;"></span>
+                <a th:href="${item.articleUrl}" style="text-decoration: underline;">阅读全文</a>
+            </p>
+
+            <div class="meta">
+                <span th:text="'posted @ ' + ${#dates.format(item.publishDate,'yyyy-MM-dd')}"></span>
+            </div>
+        </div>
+        <div cms:pageNav class="pager-wrapper">
+
+        </div>
+
+    </article>
+    <aside>
+        <div th:replace="inc/aside"></div>
+    </aside>
+</main>
+<div th:replace="inc/footer"></div>

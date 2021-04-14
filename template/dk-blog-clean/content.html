@@ -1,0 +1,32 @@
+#include('inc/header.html')
+
+<main>
+    <article class="article-detail">
+        <h1 class="article-title">#(article.title)</h1>
+        <div class="meta article-meta">
+            <div>#date(article.publishDate,'yyyy-MM-dd hh:mm:ss')</div>
+            <a href="#(article.categoryVo.categoryUrl)">#(article.categoryVo.categoryName)</a>
+        </div>
+
+        <div class="article-content">
+            #if(!isBlank(article.coverImage))
+            <div class="article-cover-image">
+                <img src="#(article.coverImage)" alt="#(article.title)">
+            </div>
+            #end
+            #(article.content)
+        </div>
+        <div class="article-neighbor">
+            #if(article.previousArticle != null)
+            <a href="#(article.previousArticle.articleUrl)">上一篇 : #(article.previousArticle.title)</a>
+            #end
+
+            #if(article.nextArticle != null)
+            <a href="#(article.nextArticle.articleUrl)">下一篇 : #(article.nextArticle.title)</a>
+            #end
+        </div>
+
+    </article>
+
+</main>
+#include('inc/footer.html')

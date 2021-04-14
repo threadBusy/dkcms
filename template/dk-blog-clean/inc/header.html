@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>#(global.setting.siteTitle)</title>
+    <link type="text/css" href="/template/dk-blog-clean/assets/clean-blog.css" rel="stylesheet"/>
+</head>
+<body>
+<nav>
+    <div class="wrapper nav">
+        <a class="logo" href="/">
+            <img src="#(global.setting.siteLogo)" alt="#(global.setting.siteTitle)"/>
+        </a>
+        <a class="site-title" href="/">
+            #(global.setting.siteTitle)
+        </a>
+        <div class="nav-right">
+            <a href="#homePageUrl()">首页</a>
+
+            #pageList()
+
+            <a class="page" href="#(item.pageUrl)">#(item.name)</a>
+            #end
+        </div>
+    </div>
+
+</nav>

@@ -1,0 +1,159 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">#(tableTitle)</h3>
+        <div class="right">
+            <a href="#/admin/content/list?categoryId=#(categoryId)" class="btn_primary">返回</a>
+        </div>
+    </div>
+    <div class="page-body-main grid-box dk-auto-form"
+         data-action="/admin/content/save"
+         data-success="/admin/content/list?categoryId=#(article.categoryId)">
+        <input type="hidden" name="id" value="#(article.id)">
+
+        <div style="width: 65%;margin-right: 10px;">
+
+
+            <table class="table-pro">
+                <tr>
+                    <td class="grid-box">
+                        <div class="grid-box-item-flex1">#(action=='edit'?'编辑':'发布') 内容</div>
+                        <div>
+                            <div class="btn_primary dk-auto-submit-btn">保存</div>
+                            <a target="_blank" class="btn_primary" href="/site/article?articleId=#(article.id)">
+                                <button type="button">预览</button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>标题:<br>
+                        <input type="text" name="title" value="#(article.title)" class="input_02"
+                               style="width: 100%;">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div style="width:100%;margin: 5px 0px;">
+                            #adminRichText('content',article.content)
+                        </div>
+
+                    </td>
+                </tr>
+
+
+            </table>
+
+            <table class="table-pro mt-10">
+                <tr>
+                    <td>自定义字段</td>
+                </tr>
+                #for(field:fieldList)
+                <tr>
+                    #switch(field.type)
+                    #case(3)
+                    <td>
+                        <span>#(field.name)</span>
+                        <br>
+                        #adminCheckBox(field.fieldName,article.ext[field.fieldName],field.options)
+                    </td>
+                    #case(5)
+                    <td>
+                        <span>#(field.name)</span>
+                        <br>
+                        #adminFileUploader(field.fieldName,article.ext[field.fieldName])
+                    </td>
+                    #default
+                    <td>
+                        <span>#(field.name)</span>
+                        <br>
+                        #adminUserModelField(field.id,article.ext[field.fieldName])
+                    </td>
+                    #end
+                </tr>
+                #end
+
+                <tr>
+                    <td>
+                        <div class="btn_primary dk-auto-submit-btn">保存
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="grid-box-item-flex1">
+            <table class="table-pro" style="border: 1px solid #f1f1f1;">
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>内容URL(permalink):<br>
+                        <input type="text" name="permalink" value="#(article.permalink)" class="input_02">
+                    </td>
+                </tr>
+                <tr>
+                    <td>作者:<br>
+                        <input type="text" name="author" value="#(article.author)" class="input_02">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>来源:<br>
+                        <input type="text" name="source" value="#(article.source)" class="input_02">
+                    </td>
+                </tr>
+                <tr>
+                    <td>类别:<br>
+                        <input type="hidden" name="category_id" value="#(article.categoryId)">
+
+                        <span>#(article.categoryName)(#(article.categoryId))</span>                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>封面图:<br>
+                        #adminFileUploader('cover_image',article.coverImage)
+                    </td>
+                </tr>
+                <tr>
+                    <td>摘要:<br>
+                        <textarea class="textarea_01" name="summary">#(article.summary)</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>关键字:<br>
+                        <textarea class="textarea_01" name="keywords">#(article.keywords)</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="btn_primary dk-auto-submit-btn">保存</div>
+                    </td>
+                </tr>
+
+
+            </table>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.js_submit').on('click', function () {
+            if ($('input[name=title]').val() === '') {
+                NDUO.popup('标题不能为空');
+                return false;
+            }
+
+            $('#post_form').submit();
+        });
+    });
+</script>
+

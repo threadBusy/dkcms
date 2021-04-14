@@ -1,0 +1,15 @@
+<div th:replace="inc/header"></div>
+
+<main>
+    <article class="article">
+        <h3 class="article-title" th:text="${singlePage.name}"></h3>
+
+        <div class="article-content" th:utext="${singlePage.content}"></div>
+        <div class="meta article-meta">
+        </div>
+    </article>
+    <aside>
+        <div th:replace="inc/aside"></div>
+    </aside>
+</main>
+<div th:replace="inc/footer"></div>

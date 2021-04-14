@@ -1,0 +1,25 @@
+#include('inc/category-header.html')
+
+
+<div class="wrapper grid-box mt-20">
+    <div class="grid-box-item-flex1">
+        <div class="photo-list">
+            #articleList()
+            <a class="photo-list-item" href="#(item.articleUrl)">
+                <img src="#(item.coverImage)">
+                <div> #(item.title)</div>
+            </a>
+            #end
+        </div>
+
+        <div class="page-nav">
+            #pageNav()
+        </div>
+    </div>
+    <div style="width: 300px;margin-left: 20px">
+        #include('inc/category-side.html')
+    </div>
+</div>
+
+
+#include('inc/footer.html')

@@ -1,0 +1,97 @@
+
+.bg-wrap {
+    height: 100%;
+    background: url(../img/login_bg.png) top left no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-wrap, .footer-wrap
+{
+    height: 60px;
+}
+
+.login-box-wrap {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+.login-box {
+    width: 360px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 20px 30px 0 rgba(63, 63, 65, .06);
+    box-sizing: border-box;
+    padding: 40px;
+}
+
+.login-box-title {
+    color: #2589ff;
+    font-size: 1.6rem;
+}
+
+.login-box-input {
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #e3e3e3;
+
+}
+
+label {
+    display: inline-block;
+    width: 70px;
+    color: #595961;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+input[type=text], input[type=password] {
+    padding: 5px 0 5px 10px;
+    border-left: 1px solid #ddd;
+    border: 0;
+    outline: 0;
+    font-size: 14px;
+    color: #595961;
+    width: 155px;
+}
+
+
+.login-box-link {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-box-link a {
+    font-size: 14px;
+    color: #9797a1;;
+    text-decoration: none;
+}
+
+.login-box-msg {
+    color: red;
+}
+
+.login-box-btn {
+    margin-top: 20px;
+}
+
+.login-btn {
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    line-height: 50px;
+    height: 50px;
+    color: #fff;
+    background: #2589ff;
+    border-radius: 6px;
+    font-size: 16px;
+    border: 0;
+    outline: 0;
+}

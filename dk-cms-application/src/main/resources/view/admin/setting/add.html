@@ -1,0 +1,94 @@
+
+
+
+<div id="body" >
+    <div class="body_box">
+
+        <div class="col_main">
+            <div class="col_main_title">
+                <h3 class="left" th:text="'系统设置'"></h3>
+                <div class="right">
+                    <a href="/setting/all" class="btn_primary">返回</a>
+                </div>
+            </div>
+            <form action="" method="post" id="post_form">
+                <table class="table1">
+                    <tr>
+                        <td>新增系统配置</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>分组</td>
+                        <td>
+                            <select name="sgroup" class="select_01">
+                                <option value="系统设置">系统设置</option>
+                                <option value="用户设置">用户设置</option>
+                                <option value="模板设置">模板设置</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>配置项名称</td>
+                        <td>
+                            <input required="required" type="text" name="name" class="input_02" style="width: 400px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>别名</td>
+                        <td>
+                            <input required="required" type="text" name="skey" class="input_02" style="width: 400px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>初始值</td>
+                        <td>
+                            <input required="required" type="text" name="svalue" class="input_02" style="width: 400px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>默认值</td>
+                        <td>
+                            <input required="required" type="text" name="sdefault" class="input_02"
+                                   style="width: 400px;">
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <span id="js_submit" class="btn_primary">
+                                <button type="button">保存</button>
+                            </span>
+                        </td>
+                    </tr>
+
+                </table>
+            </form>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#js_submit').click(function () {
+
+            var dataOk = true;
+            $('input').each(function () {
+                if ($(this).attr('required') == "required") {
+                    if ($(this).val() == "") {
+                        NDUO.popup($(this).parent().prev().html() + "不能为空");
+                        dataOk = false;
+                        return;
+                    }
+                }
+            })
+            if (dataOk) {
+                $('#post_form').submit();
+            }
+        });
+    });
+</script>
+

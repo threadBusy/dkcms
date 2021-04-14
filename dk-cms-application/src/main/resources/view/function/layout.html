@@ -1,0 +1,21 @@
+#define  adminHeader()
+<div style="width:100px;height: 100px;border: 1px solid red;">
+
+</div>
+#end
+#define menuBar()
+
+#end
+
+
+
+
+#define pageNavBar(total,current,url)
+
+<div class="page-nav">
+    #for(i = 1;i <= total;i++)
+    <div class="page-nav-item #(i==current?'s':'')" data-href="#(url+'?page='+i)">#(i)</div>
+    #end
+
+</div>
+#end

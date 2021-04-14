@@ -1,0 +1,101 @@
+<div class="page-body">
+
+    <div class="page-body-main grid-box dk-auto-form"
+         data-action="/admin/content/save"
+         data-success="/admin/content/list?categoryId=#(article.categoryId)">
+        <input type="hidden" name="id" value="#(article.id)">
+
+        <div style="width: 65%;margin-right:10px;">
+            <table class="table-pro">
+                <tr>
+                    <td style="display: flex">
+                        <div style="flex:1;">#(action=='edit'?'编辑':'发布') 图片</div>
+                        <div>
+                            <a class="btn_primary" href="javascript:history.go(-1);">
+                                返回
+                            </a>
+                            <span class="btn_primary js_submit">
+                                <button type="button">保存</button>
+                            </span>
+                            <a target="_blank" class="btn_primary" href="/site/article?articleId=#(article.id)">
+                                <button type="button">预览</button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>图片标题:<br>
+                        <input type="text" name="title" value="#(article.title)" class="input_02"
+                               data-require="标题不能为空"
+                               style="width: 100%;">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>图片:<br>
+                        #adminFileUploader('cover_image',article.coverImage)
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="btn_primary  dk-auto-submit-btn">
+                            保存
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+
+
+        </div>
+        <div class="grid-box-item-flex1">
+            <table class="table-pro">
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>内容URL(permalink):<br>
+                        <input type="text" name="permalink" value="#(article.permalink)" class="input_02">
+                    </td>
+                </tr>
+                <tr>
+                    <td>图片作者:<br>
+                        <input type="text" name="author" value="#(article.author)" class="input_02">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>图片来源:<br>
+                        <input type="text" name="source" value="#(article.source)" class="input_02">
+                    </td>
+                </tr>
+                <tr>
+                    <td>所属栏目:
+                        <input type="hidden" name="category_id" value="#(article.categoryId)">
+
+                        <span>#(article.categoryName)(#(article.categoryId))</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>图片简介:<br>
+                        <textarea class="textarea_01" name="summary">#(article.summary)</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>图片关键字:<br>
+                        <textarea class="textarea_01" name="keywords">#(article.keywords)</textarea>
+                    </td>
+                </tr>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+</div>

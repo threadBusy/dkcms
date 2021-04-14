@@ -1,0 +1,109 @@
+<div class="left-bar-title grid-box" style="display: none">
+    <div class="left-bar-title-img"
+         style="background-image: url(#getSetting('siteLogo'))"></div>
+    <div class="left-bar-title-txt grid-box-item-flex1">多客CMS</div>
+</div>
+<div class="left-bar-title" style="padding:0; text-align: center;">
+
+    <img src="/assets/image/logo.png" style="width: 90%">
+
+</div>
+
+
+<div class="left-bar-menu-wrap">
+    <div class="left-bar-menu-item">
+        <div class="menu-item-title">
+            <div class="menu-item-title-left icon icon-content"></div>
+            <div class="menu-item-title-center">内容</div>
+            <div class="menu-item-title-right icon icon-plus" data-href="/admin/content/add"></div>
+        </div>
+        <div class="menu-item-sub-list">
+            <div class="menu-item-sub-item" data-href="/admin/category/list">栏目</div>
+            <div class="menu-item-sub-item" data-href="/admin/content/index">内容</div>
+            <div class="menu-item-sub-item" data-href="/admin/singlePage/index">单页面</div>
+            <div class="menu-item-sub-item" data-href="/admin/tag/index">标签</div>
+            <div class="menu-item-sub-item" data-href="/admin/content/comment">用户评论</div>
+        </div>
+    </div>
+    <div class="left-bar-menu-item">
+        <div class="menu-item-title">
+            <div class="menu-item-title-left icon icon-template2"></div>
+            <div class="menu-item-title-center">模板</div>
+            <div class="menu-item-title-right"></div>
+        </div>
+        <div class="menu-item-sub-list">
+            <div class="menu-item-sub-item" data-href="/admin/template/index">模板切换</div>
+            <div class="menu-item-sub-item" data-href="/admin/template/file">模板编辑</div>
+        </div>
+    </div>
+    <div class="left-bar-menu-item">
+        <div class="menu-item-title">
+            <div class="menu-item-title-left icon icon-page-generator2"></div>
+            <div class="menu-item-title-center">网站生成</div>
+            <div class="menu-item-title-right"></div>
+        </div>
+        <div class="menu-item-sub-list">
+            <div class="menu-item-sub-item" data-href="/admin/template/generate">站点静态化</div>
+            <div class="menu-item-sub-item" data-href="/admin/template/seo">站点地图</div>
+            <div class="menu-item-sub-item" data-href="/admin/template/robots">站点Robot文件</div>
+        </div>
+    </div>
+    <div class="left-bar-menu-item">
+        <div class="menu-item-title">
+            <div class="menu-item-title-left icon icon-ad"></div>
+            <div class="menu-item-title-center">广告</div>
+            <div class="menu-item-title-right icon icon-plus" data-href="/admin/ad/add"></div>
+        </div>
+        <div class="menu-item-sub-list">
+            <div class="menu-item-sub-item" data-href="/admin/ad/index">广告管理</div>
+            <div class="menu-item-sub-item" data-href="/admin/ad/category">分类管理</div>
+        </div>
+    </div>
+    <div class="left-bar-menu-item">
+        <div class="menu-item-title">
+            <div class="menu-item-title-left icon icon-user"></div>
+            <div class="menu-item-title-center">注册用户</div>
+            <div class="menu-item-title-right icon icon-plus"></div>
+        </div>
+        <div class="menu-item-sub-list">
+            <div class="menu-item-sub-item" data-href="/admin/account/user">用户管理</div>
+        </div>
+    </div>
+
+    <div class="left-bar-menu-item">
+        <div class="menu-item-title">
+            <div class="menu-item-title-left icon icon-setting"></div>
+            <div class="menu-item-title-center">设置</div>
+            <div class="menu-item-title-right"></div>
+        </div>
+        <div class="menu-item-sub-list">
+            <div class="menu-item-sub-item" data-href="/admin/setting/index">模板变量</div>
+            <div class="menu-item-sub-item" data-href="/admin/setting/setting">功能设置</div>
+            <div class="menu-item-sub-item" data-href="/admin/model/index">自定义模型</div>
+            <div class="menu-item-sub-item" data-href="/admin/api/index">API管理</div>
+        </div>
+    </div>
+    <div class="left-bar-menu-item">
+        <div class="menu-item-title">
+            <div class="menu-item-title-left icon icon-staff"></div>
+            <div class="menu-item-title-center">管理员</div>
+            <div class="menu-item-title-right"></div>
+        </div>
+        <div class="menu-item-sub-list">
+            <div class="menu-item-sub-item" data-href="/admin/account/index">账号</div>
+            <div class="menu-item-sub-item" data-href="/admin/account/role">账号类别</div>
+
+        </div>
+    </div>
+
+    <div class="left-bar-menu-switch">
+        <div class="icon icon-menu-left" id="menu-switch"></div>
+    </div>
+
+
+</div>
+<div class="left-bar-bottom-wrap">
+    <div>#(Constant.SOFT_NAME)-#(Constant.SOFT_VERSION)</div>
+    <div>#(Constant.SOFT_AUTHOR)</div>
+    <div>联系 #(Constant.SOFT_CONTRACT)</div>
+</div>

@@ -1,0 +1,245 @@
+<style type="text/css">
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .tree-node {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+    }
+
+    .tree-node-open {
+        background-image: url(/assets/image/icon/folder-open.svg);
+    }
+
+    .tree-node-close {
+        background-image: url(/assets/image/icon/folder-close.svg);
+    }
+
+    .table-pro td {
+        padding: 0 10px;
+        height: 40px;
+    }
+
+    .tree-box-padding {
+        height: 40px;
+        width: 21px;
+        display: inline-block;
+
+        background: url(/assets/image/tree-node-padding.png) no-repeat;
+        background-size: 22px 40px;
+    }
+
+    .tree-box {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: url(/assets/image/tree-node.png) no-repeat;
+        background-size: 40px 40px;
+    }
+
+    .tree-box-last {
+        background-image: url(/assets/image/tree-node-close-last.png);
+
+    }
+
+    .tree-box-open {
+        background-image: url(/assets/image/tree-node-open.png);
+    }
+
+</style>
+
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">#getMessage('noun.category')#getMessage('noun.management')</h3>
+        <div class="right">
+            <div data-href="/admin/category/add" class="btn_primary">
+                #getMessage('verb.new')#getMessage('noun.category')
+            </div>
+            <div data-href="/admin/category/refresh" class="btn_primary">
+                #getMessage('verb.refresh')
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-body-main">
+        <table class="table-pro" id="categoryTable">
+            <tr data-id="0" id="target">
+                <td style="width: 50px">#getMessage('noun.id')</td>
+                <td>#getMessage('noun.category')</td>
+                <td style="width: 100px;">#getMessage('noun.model')</td>
+                <td style="width: 50px;">#getMessage('noun.sort')</td>
+                <td style="width: 250px;">#getMessage('noun.op')</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    function genArray(i) {
+        var a = [];
+        while (i > 1) {
+            a.push(i);
+            i--;
+        }
+        return a;
+    }
+</script>
+<script id="jsTmplLine" type="text/x-jquery-tmpl">
+{{each(i,item) list}}
+    <tr data-id="{{= item.id}}" data-parentId="{{= parentId}}">
+       <td>{{= item.id}}</td>
+       <td style="display:flex;align-items: center;">
+       {{each genArray(item.level) }}
+        <div class="tree-box-padding"></div>
+       {{/each}}
+        <div class="tree-box {{if ((i+1)==list.length)}}tree-box-last{{/if}}">
+        </div>
+            {{if item.childCount > 0}}
+                <a class="icon-btn icon-btn-folder tree-node tree-node-close" title="折叠"
+                   data-id="{{= item.id}}"
+                   href="javascript:void(0);"></a>
+             {{else}}
+                    <a class="icon-btn icon-btn-book tree-node tree-node-placeholder" title="书"
+                  data-id="{{= item.id}}"
+                   href="javascript:void(0);"></a>
+            {{/if}}
+
+            <a class="category-title" href="javascript:void(0);">
+                {{= item.categoryName}} ({{= item.totalCount}})
+            </a>
+
+       </td>
+       <td>{{= item.categoryTypeString}}</td>
+       <td>
+           {{if (item.sort==-1)}}
+                <span class="icon-btn icon-btn-eye-close" style="width:15px;height: 15px;display: block"></span>
+           {{else}}
+                {{= item.sort}}
+           {{/if}}
+        </td>
+       <td>
+         <div class="icon-btn icon-btn-edit" title="编辑"
+               href="/admin/category/edit?id={{= item.id}}"></div>
+
+            <div class="icon-btn icon-btn-add-category" title="新增子栏目"
+               href="/admin/category/add?parentId={{= item.id}}"></div>
+
+            <div class="icon-btn icon-btn-article" title="查看此栏目文章"
+               href="/admin/content/list?categoryId={{= item.id}}"></div>
+
+            <a class="icon-btn icon-btn-preview" title="预览"
+               href="/site/category?categoryId={{= item.id}}" target="_blank"></a>
+
+            <div class="icon-btn icon-btn-move-category" title="移动"
+               href="/admin/category/move?id={{= item.id}}"></div>
+
+            {{if (item.sort==-1)}}
+                <div class="icon-btn icon-btn-eye-open" title="显示在列表中"
+                   href="/admin/category/eyeOpen?id={{= item.id}}"></div>
+            {{else}}
+                <div class="icon-btn icon-btn-eye-close" title="不显示在列表中"
+                   href="/admin/category/eyeClose?id={{= item.id}}"></div>
+            {{/if}}
+            <div class="icon-btn icon-btn-delete" title="删除"
+               href="/admin/category/delete?id={{= item.id}}"
+               onclick="return confirm('删除后无法恢复,确定要删除?')"></div>
+        </td>
+    </tr>
+{{/each}}
+
+
+
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+
+        function getChildList(id) {
+            var target = $('tr[data-id=' + id + ']');
+            if (target.hasClass("node-child-load")) {
+                return;
+            }
+            $.get("/admin/category/getChildCategory", {id: id}, function (res) {
+                var data = {
+                    parentId: id,
+                    list: res.data
+                };
+                target.after($("#jsTmplLine").tmpl(data));
+                target.addClass("node-child-load");
+            });
+        }
+
+        function childrenHide(id) {
+            $('tr[data-parentId=' + id + ']').each(function () {
+                var self = $(this);
+                self.css('display', 'none');
+
+                self.find(".tree-node-open").each(function () {
+                    $(this).removeClass('tree-node-open');
+                    $(this).addClass('tree-node-close');
+                });
+                // 递归 关闭子栏目的子栏目
+                childrenHide(self.attr('data-id'));
+
+            });
+        }
+
+        function childrenShow(id) {
+            $('tr[data-parentId=' + id + ']').each(function () {
+                $(this).css('display', 'table-row');
+            });
+        }
+
+        $('#categoryTable').on("click", '.tree-node', function () {
+            var self = $(this);
+            // 如果没有子栏目，不能点
+            if (self.hasClass('tree-node-placeholder')) {
+                return;
+            }
+            var id = self.attr('data-id');
+            // 如果已经开了，则关闭
+            var buttons = $('a[data-id=' + id + ']');
+            if (self.hasClass('tree-node-open')) {
+                buttons.removeClass('tree-node-open');
+                buttons.addClass('tree-node-close');
+                // 子栏目的 tr display=none
+                childrenHide(id);
+                self.parent().find('.tree-box').removeClass('tree-box-open');
+
+            } else {
+                self.parent().find('.tree-box').addClass('tree-box-open');
+
+                getChildList(id, $('tr[data-id=' + id + ']'));
+                // 如果已经关了，则开启
+                buttons.removeClass('tree-node-close');
+                buttons.addClass('tree-node-open');
+                // 子栏目的 tr display=block
+                childrenShow(id);
+            }
+        });
+        $('.category-title').click(function () {
+            var perv = $(this).prev();
+            if (perv !== undefined) {
+                perv.trigger('click');
+            }
+        });
+
+
+        (function () {
+            getChildList(0);
+            /*
+            getOpenCookie().forEach(function (id) {
+                var self = $('.tree-node[data-id=' + id + ']');
+                self.addClass('tree-node-open');
+                self.removeClass('tree-node-close');
+                childrenShow(id);
+            })*/
+        })();
+    })
+</script>

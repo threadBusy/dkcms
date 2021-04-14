@@ -1,0 +1,99 @@
+<style type="text/css">
+
+    .box {
+        width: 32%;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+
+    .box td {
+        word-break: break-all;
+        white-space: normal;
+        padding:10px 0;
+    }
+</style>
+
+<div class="page-body">
+    <div class="page-body-top">
+
+        <h3 class="left">#getMessage('global.softName') - #getMessage('global.softVersion')</h3>
+        <div class="right">
+            <a data-href="/admin/content/add" class="btn_primary">发布内容</a>
+            <a data-href="/admin/site/homepage" target="_blank" class="btn_primary">#getMessage('menu.previewSite')</a>
+        </div>
+    </div>
+
+    <div class="page-body-main grid-box grid-wrap">
+        <div class="box">
+            <table class="table1">
+                <tr>
+                    <td colspan="2">#getMessage('dashboard.basic')</td>
+                </tr>
+                <tr>
+                    <td>#getMessage('dashboard.totalContent')</td>
+                    <td>#(contentInfo.articleTotalNum)</td>
+                </tr>
+                <tr>
+                    <td>#getMessage('dashboard.totalCategory')</td>
+                    <td>#(contentInfo.categoryTotalNum)</td>
+                </tr>
+                <tr>
+                    <td>#getMessage('noun.template')</td>
+                    <td>#(contentInfo.template)</td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="box">
+
+            <table class="table1">
+                <tr>
+                    <td colspan="2">#getMessage('dashboard.cms')</td>
+                </tr>
+                #for(item:cmsRequire)
+                <tr>
+                    <td style="width:100px;">#(item.key)</td>
+                    <td>#(item.value)</td>
+                </tr>
+                #end
+
+            </table>
+        </div>
+        <div class="box">
+            <table class="table1">
+                <tr>
+                    <td colspan="2">#getMessage('dashboard.database') - 数据库</td>
+                </tr>
+                #for(item:config)
+                <tr>
+                    <td style="width:100px;">#(item.key)</td>
+                    <td>#(item.value)</td>
+                </tr>
+                #end
+
+            </table>
+        </div>
+
+
+        <div class="box" style="width: 50%">
+            <table class="table1">
+                <tr>
+                    <td colspan="2">#getMessage('dashboard.server')</td>
+                </tr>
+                #for(item:sysInfo)
+                <tr>
+                    <td style="width:200px;">#(item.key)</td>
+                    <td>#(item.value)</td>
+                </tr>
+                #end
+
+            </table>
+        </div>
+
+
+    </div>
+
+</div>
+
+

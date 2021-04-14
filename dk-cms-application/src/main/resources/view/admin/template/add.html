@@ -1,0 +1,62 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">模板管理</h3>
+        <div class="right">
+            <a data-href="/admin/template/list" class="btn_primary">返回</a>
+        </div>
+    </div>
+
+
+    <div class="page-body-main">
+        <form action="" method="post" id="post_form">
+            <table class="table1">
+                <tr>
+                    <td>模板管理</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>文件名</td>
+                    <td>
+                        <input type="text" name="fileName" class="input_02"
+                               style="width: 700px;">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>模板代码</td>
+                    <td>
+                                <textarea class="textarea_01" style="width: 700px; min-height: 500px;"
+                                          name="templateContent"></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                            <span id="js_submit" class="btn_primary">
+                                <button type="button">保存</button>
+                            </span>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#js_submit').click(function () {
+            $.post("/template/ajaxNew", {
+                fileName: $('input[name=fileName]').val(),
+                templateContent: $('textarea[name=templateContent]').val()
+            }, function (res) {
+                location.href = "/template/listTemplate";
+            });
+        })
+    })
+</script>
+
+
+<div th:replace="common/footer-admin"></div>

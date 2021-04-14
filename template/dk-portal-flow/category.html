@@ -1,0 +1,55 @@
+#include('inc/header.html')
+
+<div class="wrapper category-mianbaoxie mt-10">
+    #mianbaoxie()
+</div>
+<div class="wrapper category-banner mt-10"
+     #if(category.coverImage)
+     style="background-image: url(#(category.coverImage))"
+     #end
+>
+    <div class="category-banner-title">#(category.categoryName)</div>
+    <div class="category-banner-desc">#(category.description)</div>
+
+</div>
+<div class="wrapper grid-box mt-10">
+    <div class="page-main">
+
+        <div class="content-list grid-box grid-wrap">
+            #articleList(categoryId,true,'id','desc',1,7)
+            <div class="content-list-item content-list-item-in-category">
+                <div class="content-list-item-left">
+                    <div class="img" style="background-image: url('#(item.coverImage)')"></div>
+                </div>
+                <div class="content-list-item-right">
+                    <a href="#(item.articleUrl)" class="content-list-item-right-title">#(item.title)</a>
+                    <div class="content-list-item-right-summary">
+                        #(item.summary)
+                    </div>
+                    <div class="content-list-item-right-meta">
+                        <span>#date(item.publishDate,'M月d日')</span>
+                        <span>点击：#(item.click)</span>
+                        <span>评论: 12</span>
+                    </div>
+
+                </div>
+
+            </div>
+            #end
+        </div>
+        <div class="page-nav mt-20">
+            #pageNav()
+        </div>
+
+
+    </div>
+    <div class="page-side">
+        #include('inc/aside.html')
+
+
+    </div>
+
+</div>
+
+
+#include('inc/footer.html')

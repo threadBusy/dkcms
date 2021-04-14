@@ -1,0 +1,46 @@
+#include('inc/header.html')
+
+<div class="wrapper">
+    <div class="homepage-box grid-box">
+        <div class="homepage-box-main">
+            <div class="homepage-box-main-left">
+                #@imageSlide(10)
+                #@patch1(1)
+                #@patch1(5)
+            </div>
+            <div class="homepage-box-main-right">
+                #@patchHeadLine(10)
+                #@patch1(6)
+                #@patchScrollTopLoopNews(4)
+            </div>
+        </div>
+        <div class="homepage-box-side">
+            #@patchNewRank(10)
+            #@patchByTagId(5)
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    #ad(1)
+</div>
+<div class="wrapper">
+    <div class="homepage-box grid-box">
+        <div class="homepage-box-main">
+            <div class="homepage-box-main-left">
+                #@patch2(7)
+                #@patch2(10)
+            </div>
+            <div class="homepage-box-main-right">
+                #@patch2(4)
+                #@patch2(2)
+            </div>
+        </div>
+        <div class="homepage-box-side">
+            #@patchNewRank(10)
+            #@patch3(10)
+        </div>
+    </div>
+</div>
+
+#include('inc/footer.html')

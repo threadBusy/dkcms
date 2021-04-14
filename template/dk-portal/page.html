@@ -1,0 +1,37 @@
+#include('inc/header.html')
+<div class="wrapper">
+    <div class="homepage-box grid-box">
+        <div class="homepage-box-main content-left">
+            <div class="category-mianbaoxie">
+                <span>当前位置：</span>#mianbaoxie()
+            </div>
+            <div class="content-header">
+                <div class="content-header-title">#(page.name)</div>
+            </div>
+            <div class="content-body" style="min-height: 300px;">
+                #(page.content)
+            </div>
+
+        </div>
+        <div class="homepage-box-side content-right">
+            #@patchNewRank(10)
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.post('/site/userInfo', {}, function (res) {
+            if (res.code === 0) {
+                $('#loginBox').hide();
+                $('#postBox').show();
+                $('#postBox').find('img').attr('src', res.data.logo);
+                $('#postBox').find('.content-post-user-nick').text(res.data.nickname);
+            } else {
+                $('#loginBox').show();
+                $('#postBox').hide();
+            }
+        })
+    })
+</script>
+
+#include('inc/footer.html')

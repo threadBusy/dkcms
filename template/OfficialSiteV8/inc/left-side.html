@@ -1,0 +1,27 @@
+<div class="page-side">
+    <div class="page-side-box site-info">
+        <img class="logo" src="#(global.setting.siteLogo)">
+        <div class="title">#(global.setting.siteTitle)</div>
+        <div>#(global.setting.siteDescription)</div>
+        <div>#(global.setting.siteContact)</div>
+    </div>
+    <div class="page-side-box">
+        <div class="page-side-box-title">热门推荐</div>
+
+        #articleRank({categoryId:0,limit:5,withChild:true})
+        <div class="content-list-item " style="width: 100%">
+
+            <div class="content-list-item-right">
+                <a style="font-size:14px;" href="#(item.articleUrl)" class="content-list-item-right-title">#(item.title)</a>
+                <div class="content-list-item-right-meta">
+                    <span>点击：#(item.click)</span>
+                    <span>评论: 12</span>
+                </div>
+
+            </div>
+
+        </div>
+        #end
+
+    </div>
+</div>

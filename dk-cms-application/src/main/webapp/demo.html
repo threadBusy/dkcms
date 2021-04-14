@@ -1,0 +1,188 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统登录</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/base.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/icon.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/component.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/dtpicker/calendar.css">
+
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="/assets/js/duoke.app.js"></script>
+    <script type="text/javascript" src="/assets/js/duoke.image-choose.js"></script>
+
+</head>
+<body>
+<div class="full-wrap grid-box">
+    <div class="dashboard-left-bar dashboard-left-bar-close">
+        <div class="left-bar-title grid-box">
+            <div class="left-bar-title-img"
+                 style="background-image: url('http://www.jfinal.com/upload/avatar/10/50101.jpg')"></div>
+            <div class="left-bar-title-txt grid-box-item-flex1">龙山健身</div>
+        </div>
+        <div class="left-bar-store grid-box">
+
+            <div class="left-bar-store-name grid-box-item-flex1">龙山健身西高新店</div>
+            <div class="left-bar-store-change-btn icon icon-change"></div>
+        </div>
+        <div class="left-bar-menu-switch">
+            <div class="icon icon-menu-right" id="menu-switch"></div>
+        </div>
+        <div class="left-bar-menu-wrap">
+            <div class="left-bar-menu-item">
+                <div class="menu-item-title">
+                    <div class="menu-item-title-left icon icon-reception"></div>
+                    <div class="menu-item-title-center">前台</div>
+                    <div class="menu-item-title-right icon icon-plus"></div>
+                </div>
+                <div class="menu-item-sub-list">
+                    <div class="menu-item-sub-item" data-href="/admin/reception/index">工作台</div>
+                </div>
+            </div>
+            <div class="left-bar-menu-item">
+                <div class="menu-item-title">
+                    <div class="menu-item-title-left icon icon-client"></div>
+                    <div class="menu-item-title-center">客户</div>
+                    <div class="menu-item-title-right icon icon-plus" data-href="/admin/client/add"></div>
+                </div>
+                <div class="menu-item-sub-list">
+                    <div class="menu-item-sub-item" data-href="/admin/client/query">客户查询</div>
+                    <div class="menu-item-sub-item" data-href="/admin/client/group">客户组</div>
+                    <div class="menu-item-sub-item" data-href="/admin/client/list">客户浏览</div>
+                    <div class="menu-item-sub-item" data-href="/admin/client/add">录入客户</div>
+
+                </div>
+            </div>
+            <div class="left-bar-menu-item">
+                <div class="menu-item-title open">
+                    <div class="menu-item-title-left icon icon-card"></div>
+                    <div class="menu-item-title-center">会员卡</div>
+                    <div class="menu-item-title-right"></div>
+                </div>
+                <div class="menu-item-sub-list" style="display: block;">
+                    <div class="menu-item-sub-item" data-href="/admin/card/query">会员卡查询</div>
+                    <div class="menu-item-sub-item s" data-href="/admin/card/manager">卡面管理</div>
+                    <div class="menu-item-sub-item" data-href="/admin/card/data">报表</div>
+
+                </div>
+            </div>
+            <div class="left-bar-menu-item">
+                <div class="menu-item-title">
+                    <div class="menu-item-title-left icon icon-goods"></div>
+                    <div class="menu-item-title-center">产品/服务</div>
+                    <div class="menu-item-title-right icon icon-plus" data-href="/admin/goods/create"></div>
+                </div>
+                <div class="menu-item-sub-list">
+                    <div class="menu-item-sub-item" data-href="/admin/goods/manager">产品管理</div>
+                    <div class="menu-item-sub-item" data-href="/admin/goods/create">新增产品</div>
+                    <div class="menu-item-sub-item" data-href="/admin/goods/consume">消费流水</div>
+                    <div class="menu-item-sub-item" data-href="/admin/goods/query">消费查询</div>
+                    <div class="menu-item-sub-item" data-href="/admin/goods/data">销售数据</div>
+                </div>
+            </div>
+
+            <div class="left-bar-menu-item">
+                <div class="menu-item-title">
+                    <div class="menu-item-title-left icon icon-store"></div>
+                    <div class="menu-item-title-center">门店</div>
+                    <div class="menu-item-title-right icon icon-plus" data-href="/admin/store/add"></div>
+                </div>
+                <div class="menu-item-sub-list">
+                    <div class="menu-item-sub-item" data-href="/admin/store/manager">门店管理</div>
+                    <div class="menu-item-sub-item" data-href="/admin/store/data">门店数据</div>
+                </div>
+            </div>
+            <div class="left-bar-menu-item">
+                <div class="menu-item-title">
+                    <div class="menu-item-title-left icon icon-staff"></div>
+                    <div class="menu-item-title-center">职员</div>
+                    <div class="menu-item-title-right icon icon-plus" data-href="/admin/staff/add"></div>
+                </div>
+                <div class="menu-item-sub-list">
+                    <div class="menu-item-sub-item" data-href="/admin/department/manager">部门管理</div>
+                    <div class="menu-item-sub-item" data-href="/admin/staff/manager">职员管理</div>
+                </div>
+            </div>
+            <div class="left-bar-menu-item">
+                <div class="menu-item-title">
+                    <div class="menu-item-title-left icon icon-report"></div>
+                    <div class="menu-item-title-center">报表</div>
+                    <div class="menu-item-title-right"></div>
+                </div>
+                <div class="menu-item-sub-list">
+                    <div class="menu-item-sub-item" data-href="/admin/report/client">客户报表</div>
+                    <div class="menu-item-sub-item" data-href="/admin/report/goods">产品报表</div>
+                    <div class="menu-item-sub-item" data-href="/admin/report/card">会员卡报表</div>
+                    <div class="menu-item-sub-item" data-href="/admin/report/finance">财务报表</div>
+
+                </div>
+            </div>
+            <div class="left-bar-menu-item">
+                <div class="menu-item-title">
+                    <div class="menu-item-title-left icon icon-setting"></div>
+                    <div class="menu-item-title-center">设置</div>
+                    <div class="menu-item-title-right"></div>
+                </div>
+                <div class="menu-item-sub-list">
+                    <div class="menu-item-sub-item" data-href="/admin/setting/index">系统设置</div>
+                    <div class="menu-item-sub-item" data-href="/admin/account/list">管理员</div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="left-bar-bottom-wrap">
+            <div>多客门店管理系统V3.1</div>
+            <div>陕西线程科技旗舰产品</div>
+            <div>客服电话400-666-888</div>
+        </div>
+    </div>
+    <div class=" grid-box-item-flex1 grid-box-column grid-box dashboard-main-body">
+        <div class="main-body-top-bar">
+            <div class="top-bar-left">
+                <div>首页</div>
+                <div>会员卡</div>
+                <div>卡面管理</div>
+            </div>
+            <div class="top-bar-loading" style="top: -50px;">
+                <div class="icon icon-loading page-loading">
+                </div>
+                <div class="page-loading-txt"></div>
+            </div>
+
+            <div class="top-bar-right">
+                <div>欢迎您 :</div>
+                <div>用户名 : root</div>
+
+                <a href="/logout">
+                    <i class="icon icon-logout"></i>
+                    <span>安全注销</span>
+                </a>
+            </div>
+
+        </div>
+        <div class="main-body-wrap grid-box-item-flex1">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="fixed-popup-error fixed-popup">
+</div>
+<div class="fixed-popup-msg fixed-popup">
+</div>
+<div class="fixed-modal-bg"></div>
+<script type="text/javascript">
+    $(function(){
+
+    })
+</script>
+
+</body>
+</html>

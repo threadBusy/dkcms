@@ -1,0 +1,17 @@
+#define patchNewRank(categoryId)
+<div class="patch-rank patch-common">
+    <div class="patch-header">
+        <div class="patch-header-title">热点新闻</div>
+        <div class="patch-header-more">
+            <a href="#"></a>
+        </div>
+    </div>
+    <div class="patch-body">
+        #articleRank(categoryId,'click',10)
+        <a href="#(item.articleUrl)">
+            <i class="page-rank-anchor">#(index+1)</i>
+            #(item.title)</a>
+        #end
+    </div>
+</div>
+#end

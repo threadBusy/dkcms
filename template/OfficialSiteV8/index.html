@@ -1,0 +1,145 @@
+#include('inc/header.html')
+
+<div class="wrapper ">
+    <div class="homepage-part1 mt-30 grid-box">
+        #articleRank({withChild:true,limit:1})
+        <a class="grid-box-item-flex1 homepage-part1-left">
+            <h1>#(item.title)</h1>
+            <p>#(item.summary)</p>
+        </a>
+        #end
+        <div class="homepage-part1-right">
+            <a href="">
+                <img src="/template/OfficialSiteV8/assets/img/news-top-shujiquzhang.png">
+            </a>
+
+        </div>
+    </div>
+    <div class="homepage-part2 mt-10 grid-box">
+        <div class="homepage-part2-left grid-box-item-flex1">
+            <div class=" grid-box" style="border:1px solid #f7f7f7; height: 250px;overflow: hidden">
+                <div class="homepage-part2-slide">
+                    #@imageSlide(0)
+
+                </div>
+                <div class="homepage-part2-yaowen">
+                    <p>今日要闻</p>
+                    #articleRank({categoryId:3,limit:5,withChild:true})
+                    <a href="#(item.articleUrl)">#(item.title)</a>
+                    #end
+                </div>
+            </div>
+            <div class="mt-10 grid-box" style="background-color: #f7f7f7">
+                <div class="homepage-part2-tuijian">今日推荐</div>
+                <div class="homepage-part2-tuijian-list">
+                    #articleRank({categoryId:3,limit:6,withChild:true})
+                    <a href="#(item.articleUrl)">
+                        <img src="#(item.coverImage)" alt="#(item.title)">
+                    </a>
+                    #end
+                </div>
+            </div>
+        </div>
+        <div class="homepage-part2-right">
+            <img src="http://www.zgkqw.com/images/news-center-right01.png">
+            <img src="http://www.zgkqw.com/images/news-center-right02.png">
+            <img src="http://www.zgkqw.com/images/news-center-right03.png">
+
+
+        </div>
+
+    </div>
+</div>
+
+<div class="wrapper grid-box mt-20">
+    <img src="http://www.zgkqw.com/12044/202011/W020201225401760156058.jpg" style="max-width: 100%">
+
+</div>
+<div class="wrapper grid-box mt-30">
+    <div class="homepage-part3">
+        <div class="homepage-part3-header">
+            <div class="homepage-part3-header-title">北山新闻</div>
+            <a class="homepage-part3-header-more" href="#"> >></a>
+        </div>
+        <div class="homepage-part3-body">
+            #contentList({categoryId:0,withChild:true})
+            <a class="homepage-part3-body-article" href="#(item.articleUrl)">#(item.title)</a>
+            #end
+
+        </div>
+    </div>
+
+    <div class="homepage-part3">
+        <div class="homepage-part3-header">
+            <div class="homepage-part3-header-title">视频风采</div>
+            <a class="homepage-part3-header-more" href="#categoryUrl(3)"> >></a>
+        </div>
+        <div class="homepage-part3-body grid-box grid-wrap">
+            #contentList({categoryId:0,withChild:true,limit:4})
+            <a class="homepage-part3-body-img" href="#(item.articleUrl)">
+                <img src="#(item.coverImage)"/>
+                <p>#(item.title)</p>
+            </a>
+            #end
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper grid-box mt-20">
+    <img src="http://www.zgkqw.com/12044/202011/W020201223564078403810.jpg" style="max-width: 100%">
+
+</div>
+
+
+<div class="wrapper mt-20">
+    <div class="homepage-part4">
+        <div class="homepage-part4-header">
+            <div class="homepage-part4-header-title">领导风采</div>
+            <a class="homepage-part4-header-more" href="#categoryUrl(3)"> >></a>
+        </div>
+        <div class="homepage-part4-body grid-box grid-wrap">
+            #contentList({categoryId:0,withChild:true,limit:8})
+            <div class="homepage-part4-body-article">
+                <div class="homepage-part4-body-article-left" style="background-image: url('#(item.coverImage)')">
+                </div>
+                <div class="homepage-part4-body-article-right">
+                    <a class="t" href="#(item.articleUrl)">#(item.title)</a>
+                    <a class="s" href="#(item.articleUrl)">#(item.summary)</a>
+                </div>
+            </div>
+            #end
+        </div>
+    </div>
+
+</div>
+
+
+<div class="wrapper grid-box mt-20">
+    <img src="http://www.zgkqw.com/12044/202011/W020210125387652262632.png" style="width: 100%">
+</div>
+<div class="wrapper mt-20">
+    <div class="homepage-part4">
+        <div class="homepage-part4-header">
+            <div class="homepage-part4-header-title">图片新闻</div>
+            <a class="homepage-part4-header-more" href="#categoryUrl(3)"> >></a>
+        </div>
+        <div class="homepage-part4-body grid-box grid-wrap">
+
+            <div class="photo-list">
+                #contentList({categoryId:2,withChild:true,limit:8})
+                <a class="photo-list-item" href="#(item.articleUrl)">
+                    <img src="#(item.coverImage)">
+                    <div> #(item.title)</div>
+                </a>
+                #end
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+#include('inc/footer.html')

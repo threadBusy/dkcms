@@ -1,0 +1,26 @@
+#include('inc/header.html')
+
+<main>
+    <div class="wrapper">
+        #contentList({categoryId:0,withChild:true,limit:20})
+        <div class="article-item-in-list">
+
+            <div class="txt">
+
+                <a href="#(item.articleUrl)" class="title">#(item.title)</a>
+                <p class="summary">#(item.summary)</p>
+                <a href="#(item.categoryVo.categoryUrl)" class="cate">
+                    #(item.categoryName)    @#date(item.publishDate,'y-m-d h:m')</a>
+            </div>
+            <div class="img" style="background-image: url('#(item.coverImage)')">
+
+            </div>
+        </div>
+        #end
+        <div class="pageNav">
+            #pageNav()
+        </div>
+    </div>
+
+</main>
+#include('inc/footer.html')

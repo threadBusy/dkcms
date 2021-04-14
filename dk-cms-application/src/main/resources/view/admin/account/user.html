@@ -1,0 +1,107 @@
+<div class="page-body">
+
+    <div class="page-body-top">
+        <h3 class="left">注册用户</h3>
+
+    </div>
+    <div class="page-body-main">
+        <table class="page-body-main-table1 table-goods">
+            <tr>
+
+                <td style="width: 50px;">编号</td>
+                <td style="width:100px;">用户名</td>
+                <td style="width:100px;">姓名</td>
+                <td style="width: 100px;">联系方式</td>
+                <td style="width:200px;">登录数据</td>
+                <td style="width:200px;">当前状态</td>
+                <td style="min-width: 110px;">操作</td>
+            </tr>
+            #if(list.size() == 0)
+            <tr>
+                <td colspan="9" class="td-nodata">暂无</td>
+            </tr>
+            #end
+            #for(x:list)
+            <tr>
+
+                <td>#(x.id)</td>
+                <td>#(x.username)</td>
+                <td>#(x.realname)</td>
+                <td>电话：#(x.telephone??'-')<br>
+                    邮箱：#(x.email??'-')<br>
+                </td>
+                <td>登录次数：#(x.loginTimes??'0') <br>
+                    最后登录：#date(x.lastLoginAt,'yyyy-MM-dd HH:mm')<br>
+                    登录IP：#(x.lastIp??'-')
+                </td>
+                <td>#(x.enable?'正常':'已禁止登录')</td>
+                <td>
+                    <a href="javascript:void(0)" class="btn-update-password"
+                       data-id="#(x.id)"
+                       data-username="#(x.username)"
+                       data-realname="#(x.realname)">修改密码</a>
+                    <a href="javascript:void(0)" class="btn-lock"
+                       data-id="#(x.id)"> #(!x.enable?'解锁':'锁定')</a>
+
+                </td>
+            </tr>
+            #end
+
+        </table>
+        <div class="page-body-main-table-btn-bar">
+            <div>操作:</div>
+            <a href="javascript:void(0)">新增账号</a>
+        </div>
+        #adminPageNav()
+    </div>
+</div>
+
+<div class="fixed-modal" id="model-new-account">
+    <div class="fixed-modal-header">
+        <div class="fixed-modal-header-title">新增管理员</div>
+        <div class="icon icon-close-btn"></div>
+    </div>
+    <div class="fixed-modal-body">
+        #@printFormItems(itemList)
+        <div class="form-item flex-end">
+            <input type="button" value="保存" id="btnSave">
+        </div>
+    </div>
+</div>
+
+<div class="fixed-modal" id="modal-update-password">
+    <div class="fixed-modal-header">
+        <div class="fixed-modal-header-title">修改密码</div>
+        <div class="icon icon-close-btn">
+
+        </div>
+    </div>
+    <div class="fixed-modal-body">
+        <input type="hidden" id="model-id" name="id" value="">
+        <div class="form-item">
+            <label>姓名</label>
+            <span class="form-item-tip" id="model-realname"></span>
+            <span class="form-item-msg"></span>
+        </div>
+        <div class="form-item">
+            <label>用户名</label>
+            <span class="form-item-tip" id="model-username"></span>
+            <span class="form-item-msg"></span>
+        </div>
+        <div class="form-item">
+            <label for="password">新密码</label>
+            <input type="text" name="password" id="password"/>
+            <span class="form-item-tip" id="model-"></span>
+            <span class="form-item-msg"></span>
+        </div>
+        <div class="form-item">
+            <label for="password2">确认密码</label>
+            <input type="text" name="password2" id="password2"/>
+            <span class="form-item-tip"></span>
+            <span class="form-item-msg"></span>
+        </div>
+        <div class="form-item flex-end">
+            <input type="button" value="修改" id="btnSavePassword">
+        </div>
+    </div>
+</div>

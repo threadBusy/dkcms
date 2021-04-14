@@ -1,0 +1,67 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">数据接口清单</h3>
+        <div class="right">
+            <a href="#/admin/api/tokenAdd" class="btn_primary">新增Token</a>
+        </div>
+    </div>
+
+    <div class="page-body-main">
+
+        <table class="table-pro" style="word-break: break-all; vertical-align: top">
+            <tr>
+                <td style="width:30px;">编号</td>
+                <td style="width: 200px">接口名称</td>
+                <td>输入参数</td>
+                <td>返回数据</td>
+                <td style="width: 240px">备注</td>
+            </tr>
+
+
+            <tr>
+                <td>1.1</td>
+                <td>获取栏目列表<br>url:/openapi/getCategoryTree</td>
+                <td>基础参数:token,sign<br>
+                    业务参数:无
+                </td>
+                <td>标准返回结构</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1.2</td>
+                <td>提交内容API<br>url:/openapi/postContent</td>
+                <td>基础参数:token,sign<br>
+                    业务参数:title|content|categoryId 等文章内容需要的字段，但至少有这三个字段<br>
+                    业务参数:saveAsDraft=false 如果明确指定了这个参数为false，则文章会正式发布，否则默认保存入草稿箱<br>
+                </td>
+                <td>标准返回结构</td>
+                <td>提交文章，进入草稿箱，需登录后台手动发布</td>
+            </tr>
+            <tr>
+                <td>1.3</td>
+                <td>重新生成首页接口<br>url:/openapi/generateSiteHomePage</td>
+                <td>基础参数:token,sign<br>
+                    业务参数:无
+                </td>
+                <td>标准返回结构</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1.4</td>
+                <td>重新生成栏目页面接口<br>url:/openapi/generateCategoryPage</td>
+                <td>基础参数:token,sign<br>
+                    业务参数:categoryId(必填，合法栏目id，不能是 0 )<br>
+                    业务参数:withChild(选填，默认false,是否包含子栏目)<br>
+                </td>
+                <td>标准返回结构</td>
+                <td></td>
+            </tr>
+
+        </table>
+
+
+    </div>
+</div>
+
+
+

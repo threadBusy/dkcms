@@ -1,0 +1,45 @@
+<script type="text/javascript">
+
+    function getTime() {
+        var date = new Date();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+
+        return date.getHours() + ':' + ((m < 10) ? '0' : '') + m + ":" + ((s < 10) ? '0' : '') + s + ":" + date.getMilliseconds()
+    }
+
+    var showLog = function (msg) {
+
+        var logBox = $('#echoLog');
+        if (msg.charAt(msg.length - 1) !== "\n") {
+            msg = msg + "\n";
+        }
+        msg = "[<span>" + getTime() + "</span>] " + msg;
+        logBox.append(msg);
+        logBox.scrollTop(logBox.scrollTop() + 50);
+    };
+
+    var getConnectionThenRun = function (cmd, payload) {
+        var wsServer = 'ws://' + location.host + "/admin/template/socketServer";
+        var socketClient = new SocketClient();
+        socketClient.regHandler("onclose", function () {
+            showLog('请求结束');
+            showLog('====================');
+        });
+        socketClient.regHandler("onopen", function () {
+            showLog("已连接服务器，发送指令 [ cmd:" + cmd + "; payload:" + JSON.stringify(payload) + ' ]');
+            socketClient.sendMsg(cmd, payload);
+        });
+        socketClient.regHandler("bye", function () {
+            showLog("收到bye消息，准备关闭");
+            socketClient.close();
+        });
+        socketClient.regHandler("echo", function (msg) {
+            showLog(msg);
+        });
+        socketClient.connect(wsServer);
+        return socketClient;
+    }
+
+</script>
+

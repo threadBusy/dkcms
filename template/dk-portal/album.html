@@ -1,0 +1,35 @@
+#include('inc/header.html')
+<div class="wrapper">
+    <div class="homepage-box grid-box">
+        <div class="homepage-box-main category-left">
+            <div class="category-mianbaoxie">
+                <span>当前位置：</span>#mianbaoxie()
+            </div>
+            <div class="category-header">
+                <div class="category-header-title">图集：#(category.categoryName)</div>
+                <div class="category-header-desc">#(category.description??'栏目介绍')
+                </div>
+
+            </div>
+            <div class="photo-list">
+                #articleList(categoryId,true,'id','desc',1,7)
+                <a class="photo-list-item" href="#(item.articleUrl)">
+
+                    <img src="#(item.coverImage)">
+                    <div> #(item.title)</div>
+                </a>
+                #end
+            </div>
+
+            <div class="pager-wrapper" style="margin:10px;">
+                #pageNav()
+            </div>
+        </div>
+        <div class="homepage-box-side category-right">
+            #@patchNewRank(10)
+            #@patch4(0)
+        </div>
+    </div>
+</div>
+
+#include('inc/footer.html')

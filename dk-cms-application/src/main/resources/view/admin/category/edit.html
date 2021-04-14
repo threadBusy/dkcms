@@ -1,0 +1,201 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <div data-href="/admin/category/list" class="btn_primary">返回</div>
+        #if(category.id)
+        <div data-href="/admin/content/list?categoryId=#(category.id)"
+             class="btn_primary">
+            #getMessage('noun.content')#getMessage('noun.management')
+        </div>
+        #end
+    </div>
+    <div class="page-body-main grid-box dk-auto-form"
+         data-action="/admin/category/save" data-success="/admin/category/list">
+
+        <input type="hidden" name="id" value="#(category.id)">
+        <input type="hidden" name="tags" value="#(category.tags)">
+        <input type="hidden" name="parent_id" value="#(category.parentId)">
+
+        <div style="width: 60%;margin-right:10px;">
+            <table class="table-pro">
+                <tr>
+                    <td style="width:70px;">
+                        #getMessage('verb.edit') #getMessage('noun.category')
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>#getMessage('noun.parentCategory')</td>
+                    <td>#(parentCategory.categoryName)</td>
+                </tr>
+                <tr>
+                    <td>#getMessage('noun.categoryName')</td>
+                    <td>
+                        <input type="text" name="category_name"
+                               data-require="栏目标题不能为空"
+                               value="#(category.categoryName)" class="input_02 ">
+                    </td>
+                </tr>
+                <tr>
+                    <td>#getMessage('noun.category')URL</td>
+                    <td>
+                        <input type="text" name="permalink"
+                               data-require="栏目url路径不能为空"
+                               value="#(category.permalink)" class="input_02">
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>#getMessage('noun.description')</td>
+                    <td>
+                            <textarea class="textarea_01"
+                                      name="description">#(category.description)</textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="vertical-align: top">#getMessage('noun.content')</td>
+                    <td>
+                        <div style="width:100%;margin: 5px 0px;">
+                            #adminRichText("content",category.content)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td>
+                            <span class="btn_primary dk-auto-submit-btn">
+                                <button type="submit">#getMessage('verb.save')</button>
+                            </span>
+                    </td>
+                </tr>
+
+            </table>
+
+
+        </div>
+        <div class="grid-box-item-flex1">
+            <table class="table-pro">
+                <tr>
+                    <td>#getMessage('verb.edit')#getMessage('noun.category')</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>#getMessage('noun.tag')</span><br>
+                        #adminTagSelect('tags','category',1)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span>#getMessage('noun.sort')</span><br>
+
+                        <input type="text" name="sort" value="#(category.sort)"
+                               class="input_02">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>#getMessage('noun.model')</span><br>
+
+                        #adminCategoryTypeSelect('category_type',category.categoryType)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>#getMessage('noun.categoryPage')#getMessage('noun.template')</span><br>
+
+                        #adminTemplateFileSelect('template_cate',category.templateCate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>#getMessage('noun.listPage')#getMessage('noun.template')</span><br>
+
+                        #adminTemplateFileSelect('template_list',category.templateList)
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>#getMessage('noun.articlePage')#getMessage('noun.template')</span><br>
+                        #adminTemplateFileSelect('template_content',category.templateContent)
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>栏目首页设置</span><br>
+
+                        <div class="m-radio" id="enterPage">
+                            <input type="hidden" name="enter_page" value="1">
+                            <div class="select-option #(category.enterPage==1?'s':'')"
+                                 data-value="1">显示栏目首页
+                            </div>
+                            <div class="select-option #(category.enterPage==2?'s':'')"
+                                 data-value="2">跳转到栏目列表页
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>#getMessage('noun.coverImage')</span><br>
+
+                        #adminFileUploader('cover_image',category.coverImage)
+
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <span>SEO#getMessage('noun.description')</span><br>
+
+                        <textarea class=" textarea_01"
+                                  name="seo_description">#(category.seoDescription)</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>SEO#getMessage('noun.keywords')</span><br>
+
+                        <textarea class=" textarea_01"
+                                  name="keywords">#(category.keywords)</textarea>
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                            <span class="btn_primary dk-auto-submit-btn">
+                                <button type="submit">#getMessage('verb.save')</button>
+                            </span>
+                    </td>
+                </tr>
+
+            </table>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#enterPage > .select-option').click(function () {
+            $('#enterPage >  .select-option.s').removeClass('s');
+            $(this).addClass("s");
+            $("input[name=enterPage]").val($(this).attr('data-value'));
+        });
+    });
+</script>
+
+

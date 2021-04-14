@@ -1,0 +1,43 @@
+#include('inc/header.html')
+
+<div class="section-category">
+    <div class="wrapper category-wrapper" style="width: 80%">
+        <div class="category-right">
+            <div class="category-title">
+                <h1>栏目：#(category.categoryName)</h1>
+            </div>
+            <div class="category-content category-box">
+                nihao
+
+
+            </div>
+            #for(item:articleList)
+            <div class="article-item-in-list">
+                <div class="img" style="background-image: url('#(item.coverImage)')"></div>
+                <div class="txt">
+                    <a href="#(item.categoryVo.categoryUrl)" class="cate">#(item.categoryName)</a>
+                    <a href="#(item.articleUrl)" class="title">#(item.title)</a>
+                    <p class="summary">#(item.summary)</p>
+                </div>
+            </div>
+            #end
+
+        </div>
+        <div class="category-left">
+            <div class="category-box side-box">
+                <div class="side-box-title">内容目录</div>
+                <div class="side-box-body">
+                    #articleList({categoryId:categoryId,orderSort:'asc'})
+                    <a href="#(item.articleUrl)">#(item.title)</a>
+                    #end
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+#include('inc/footer.html')

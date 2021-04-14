@@ -1,0 +1,23 @@
+#define patchHeadLine(categoryId)
+
+<div class="patch-headline">
+    #contentList(categoryId,true,'id','desc')
+    #if(index==0)
+    <a class="patch-headline-first" href="#(item.articleUrl)">
+        <span>#(item.title)</span>
+    </a>
+    #end
+    #if(index>0 && index<7)
+    <a href="#(item.articleUrl)">
+        <span>[</span> <span class="titleSpan">#(item.title)</span> <span>]</span>
+    </a>
+    #end
+    #if(index==6)
+    <div class="common-line"></div>
+    #end
+    #if(index>6)
+    <a href="#(item.articleUrl)" class="patch-headline-normal">#(item.title)</a>
+    #end
+    #end
+</div>
+#end

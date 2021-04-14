@@ -1,0 +1,63 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">接口管理</h3>
+        <div class="right">
+            <a href="#/admin/api/tokenAdd" class="btn_primary">新增Token</a>
+            <a href="#/admin/api/apiList" class="btn_primary">数据接口说明</a>
+
+        </div>
+    </div>
+    <div class="page-body-main">
+
+
+        <table class="table1">
+            <tr>
+                <td style="width:30px;">编号</td>
+                <td style="width: 250px">Token</td>
+                <td>用途</td>
+                <td>添加时间</td>
+                <td>过期时间</td>
+                <td>是否有效</td>
+                <td style="width: 100px;">&nbsp;</td>
+            </tr>
+
+            #if(list.size()==0)
+            <tr>
+                <td colspan="10">无数据</td>
+            </tr>
+            #end
+
+            #for(item:list)
+            <tr>
+                <td>#(item.id)</td>
+                <td>#(item.token)</td>
+                <td>#(item.name)</td>
+                <td>#date(item.createdAt,'yyyy-MM-dd HH:mm')</td>
+                <td style="#(isExpired?'color':'red')">
+                    #date(item.expiredAt,'yyyy-MM-dd HH:mm')
+                </td>
+                <td>#(item.isValid==1?'有效':'已无效')</td>
+
+                <td>
+
+                    #if(item.isValid==1)
+                    <a class="icon-btn icon-btn-token-stop"
+                       href="#/admin/api/setValid?id=#(item.id)"></a>
+                    #else
+                    <a class="icon-btn icon-btn-token-open"
+                       href="#/admin/api/setValid?id=#(item.id)"></a>
+                    #end
+                    <a class="icon-btn icon-btn-delete" title="删除"
+                       href="#/admin/api/deleteToken?id=#(item.id)"
+                       onclick="return confirm('删除后，不可恢复，确定删除?')"></a>
+
+                </td>
+                #end
+            </tr>
+
+
+        </table>
+
+    </div>
+</div>
+

@@ -1,0 +1,63 @@
+#include('../patch/imageSlide.html')
+#include('../patch/patch-side-article-slide.html')
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <title>#getSetting('siteTitle')</title>
+
+    <meta name="Keywords" content="#getSetting('siteSeoKeywords')">
+    <meta name="Description" content="#getSetting('siteSeoDescription')">
+    <link type="text/css" href="/template/dk-portal-fashion/assets/css/dk-common.css" rel="stylesheet"/>
+    <link type="text/css" href="/template/dk-portal-fashion/assets/css/dk-portal.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="/template/dk-portal-fashion/assets/js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="/template/dk-portal-fashion/assets/js/jquery.SuperSlide.2.1.3.js"></script>
+</head>
+<body>
+
+<div class="header-nav">
+    <div class="wrapper header-nav-inner">
+        <div class="logo">
+            #if(global.setting.siteLogo)
+            <img src="#(global.setting.siteLogo)">
+            #else
+            #(global.setting.siteTitle)
+            #end
+        </div>
+        <div class="grid-box nav-list">
+            <a class=" #(contextType=='SITE_HOMEPAGE'?'s':'')" href="#homePageUrl()">首页</a>
+            #categoryList(0)
+            <a href="#(item.categoryUrl)"
+               #if(categoryId==item.id)
+               class="s"
+               #end>#(item.categoryName)</a>
+            #end
+        </div>
+        <div class="header-right">
+            <div class="search-bar">
+                <input type="text" placeholder="搜索更多内容">
+                <input type="image">
+            </div>
+            <div class="login-bar" style="display: none">
+                <a href="/login">登录</a>
+                <a href="/login">注册</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.post('/site/userInfo', {}, function (res) {
+            if (res.code === 0) {
+                $('#topLoginBox').hide();
+                $('#topUserBox').show();
+                $('#topUserBoxNick').text("欢迎你 : " + res.data.nickname)
+            } else {
+                $('#topLoginBox').show();
+                $('#topUserBox').hide();
+            }
+        })
+    })
+</script>

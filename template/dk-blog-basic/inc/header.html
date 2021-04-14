@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${global.setting.siteTitle}"></title>
+    <link type="text/css" href="/template/dk-blog-basic/assets/pony.css" rel="stylesheet"/>
+</head>
+<body id="home">
+<header>
+    <h1 th:text="${global.setting.siteTitle}"></h1>
+    <p th:text="${global.setting.siteDescription}"></p>
+</header>
+<nav>
+    <a cms:homePageUrl>首页</a>
+    <a cms:categoryList parentId="0" th:text="${item.categoryName}" th:href="${item.categoryUrl}"></a>
+</nav>

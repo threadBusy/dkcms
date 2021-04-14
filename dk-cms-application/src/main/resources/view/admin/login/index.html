@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>#getSetting('siteTitle')-用户登录-#(Constant.SOFT_NAME)-#(Constant.SOFT_VERSION)</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/login.css"/>
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+
+</head>
+<body>
+<form method="post" id="login-form" style="display: inline">
+    <div class="bg-wrap">
+        <div class="header-wrap"></div>
+
+        <div class="login-box-wrap">
+            <div class="login-box">
+                <div class="login-box-title mb-30">登录</div>
+                <div class="login-box-input mb-30">
+                    <label for="username">登录账号:</label>
+                    <input id="username" type="text" name="username" placeholder="请输入登录账号" autocomplete="off"/>
+                    <input style="display: none" type="text" name="fake-username"/>
+                </div>
+                <div class="login-box-input mb-30">
+                    <label for="password">登录密码:</label>
+                    <input style="display: none" type="password" name="fake-password"/>
+                    <input id="password" type="password" name="password" placeholder="请输入登录密码" autocomplete="off"/>
+                </div>
+                <div class="login-box-link mb-30">
+                    <a href="/register">注册新账号？</a>
+                    <a href="javascript:void(0)" style="display: none">忘记密码</a>
+                </div>
+                <div class="login-box-msg mb-10">&nbsp;</div>
+                <div class="login-box-btn">
+                    <a href="javascript:void(0)" class="login-btn">登录</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-wrap"></div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(function () {
+        $('.login-btn').on('click', function () {
+            var data = {
+                u: $('input[name=username]').val(),
+                p: $('input[name=password]').val()
+            };
+            if (data.u === '' || data.p === '') {
+                $('.login-box-msg').html("请填写用户名和密码");
+                setTimeout(function () {
+                    $('.login-box-msg').html('&nbsp;');
+                }, 3000);
+                return;
+            }
+            $.post(location.href, data, function (res) {
+                if (res.code === 0) {
+                    location.href = res.msg;
+                } else {
+                    $('.login-box-msg').html("错误:" + res.msg);
+                }
+            });
+        })
+    })
+</script>
+
+</body>
+</html>

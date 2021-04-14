@@ -1,0 +1,120 @@
+<!--begin--->
+#define printFormItemsWithData(items,data)
+<div class="form-item-debug" style="display: none">
+    #(data)
+</div>
+#for(item:items)
+#switch (item.itemType)
+#case(0)
+<!--hidden-->
+<input type="hidden" name="#(item.fieldName)" value="#(data.get(item.fieldName))">
+
+#case(1)
+<div class="form-item">
+    <label for="#(item.fieldName)">#(item.paramName)</label>
+    <input type="text" name="#(item.fieldName)" id="#(item.fieldName)"
+           value="#(data.get(item.fieldName))" placeholder="#(item.placeHolder)">
+    <span class="form-item-tip"></span>
+    <span class="form-item-msg"></span>
+</div>
+#case(7)
+<div class="form-item">
+    <label for="#(item.fieldName)">#(item.paramName)</label>
+    <input type="number" name="#(item.fieldName)" id="#(item.fieldName)"
+           value="#(data.get(item.fieldName))" placeholder="#(item.placeHolder)">
+    <span class="form-item-tip"></span>
+    <span class="form-item-msg"></span>
+</div>
+#case(9)
+<!--calendar--->
+<div class="form-item">
+    <label for="#(item.fieldName)">#(item.paramName)</label>
+    <input type="text" name="#(item.fieldName)" id="#(item.fieldName)" calendar="YYYY-MM-DD hh:mm:ss"
+           value="#date(data.get(item.fieldName), 'yyyy-MM-dd HH:mm:ss')">
+    <span class="form-item-tip"></span>
+    <span class="form-item-msg"></span>
+
+</div>
+#case(10)
+<!--info--->
+<div class="form-item">
+    <label for="#(item.fieldName)">#(item.paramName)</label>
+    <input type="text" name="#(item.fieldName)" id="#(item.fieldName)"
+           value="#(data.get(item.fieldName))" disabled class="input-hidden">
+    <span class="form-item-tip"></span>
+    <span class="form-item-msg"></span>
+
+</div>
+#case(2)
+
+<div class="form-item">
+    <label for="#(item.fieldName)">#(item.paramName)</label>
+    <select name="#(item.fieldName)" id="#(item.fieldName)" data-val="#(data.get(item.fieldName))">
+        #set(valList=item.defaultValue.split(';'))
+        #for(v:valList)
+        #set(kv=v.split(':'))
+        #if(kv.length==1)
+        <option value="#(v)"
+                #(v==java.lang.String::valueOf(data.get(item.fieldName))?'selected="selected"':'')
+        >#(v)
+        </option>
+        #else
+        <option value="#(kv[1])" #( kv[1]==java.lang.String::valueOf(data.get(item.fieldName))?'selected=selected':'')>
+            #(kv[0])
+        </option>
+        #end
+        #end
+    </select>
+    <span class="form-item-tip"></span>
+    <span class="form-item-msg"></span>
+</div>
+#case(3)
+<div class="form-item">
+    <label for="#(item.fieldName)">#(item.paramName)</label>
+    <textarea id="#(item.fieldName)" placeholder="#(item.placeHolder)"
+              name="#(item.fieldName)">#(data.get(item.fieldName))</textarea>
+    <span class="form-item-tip"></span>
+    <span class="form-item-msg"></span>
+</div>
+
+
+#case(5)
+<!--文件 // 这个目前还没用，这个会出错，imageUplaod 没有这个签名的版本-->
+<div class="form-item">
+    <label for="#(item.fieldName)">#(item.paramName)</label>
+    #@imageUploader(item.fieldName,item.defaultValue)
+</div>
+
+
+#case(4)
+<!--多图-->
+<div class="form-item">
+    <label for="#(item.fieldName)">#(item.paramName)</label>
+    #@imageUploader(item.fieldName,data.get(item.fieldName),false)
+</div>
+
+#case(8)
+<!--单图-->
+<div class="form-item">
+    <label for="#(item.fieldName)">#(item.paramName)</label>
+    #@imageUploader(item.fieldName,data.get(item.fieldName),true)
+</div>
+
+
+#case(6)
+<div class="form-item">
+    <input type="button" value="#(item.paramName)" id="#(item.fieldName??'btnSubmit')">
+    <span class="form-item-tip"></span>
+    <span class="form-item-msg"></span>
+</div>
+#end
+
+#end
+<script src='/assets/vendor/dtpicker/calendar.js' type='text/javascript'></script>
+#end
+<!--end--->
+
+
+#define printFormItems(items)
+#@printFormItemsWithData(items,{})
+#end

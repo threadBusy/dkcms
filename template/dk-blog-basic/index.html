@@ -1,0 +1,27 @@
+<div th:replace="inc/header" ></div>
+
+<main>
+    <article>
+        <div cms:articleList parentId="0" includeSubCategory="true" class="article">
+            <a th:href="${item.articleUrl}">
+                <h3 class="article-title" th:text="${item.title}"></h3>
+            </a>
+            <div class="summary">
+                <span th:text="${item.summary}" style="margin-right: 20px"></span>
+                <a th:href="${item.articleUrl}" style="text-decoration: underline">阅读全文</a>
+            </div>
+
+            <div class="meta">
+                <span class="post-at" th:text="'posted @ ' + ${#dates.format(item.publishDate,'yyyy-MM-dd hh:mm')}"></span>
+            </div>
+        </div>
+        <div class="pager-wrapper" cms:pageNav>
+
+        </div>
+
+    </article>
+    <aside>
+        <div th:replace="inc/aside" ></div>
+    </aside>
+</main>
+<div th:replace="inc/footer" ></div>

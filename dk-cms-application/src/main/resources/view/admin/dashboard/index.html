@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>#getSetting('siteTitle')-#(Constant.SOFT_NAME)-#(Constant.SOFT_VERSION)</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/cms.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/component.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/dtpicker/calendar.css"/>
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="/assets/js/duoke.app.js"></script>
+    <script type="text/javascript" src="/assets/js/common-nduo.js"></script>
+    <script type="text/javascript" src="/assets/js/duoke.image-choose.js"></script>
+    <script type="text/javascript" src="/assets/js/SocketClient.js"></script>
+
+</head>
+<body>
+<div class="full-wrap grid-box">
+    <div class="dashboard-left-bar">
+        #include('leftMenu.html')
+    </div>
+    <div class=" grid-box-item-flex1 grid-box-column grid-box dashboard-main-body">
+        <div class="main-body-top-bar">
+            <div class="top-bar-left">
+                <div>#getSetting('siteTitle')</div>
+            </div>
+            <div class="top-bar-loading">
+                <div class="icon icon-loading page-loading">
+                </div>
+                <div class="page-loading-txt"></div>
+            </div>
+
+            <div class="top-bar-right">
+                #if(!isBlank(__ADMIN__.realname))
+                <div>欢迎您 : #(__ADMIN__.realname)</div>
+                #end
+                <div>用户名 : #(__ADMIN__.username)</div>
+                <a href="/site/homepage" target="_blank">
+                    <i class="icon icon-preview"></i>
+                    <span>站点首页</span>
+                </a>
+                <a href="/logout">
+                    <i class="icon icon-logout"></i>
+                    <span>安全注销</span>
+                </a>
+            </div>
+
+        </div>
+        <div class="main-body-wrap grid-box-item-flex1">
+        </div>
+
+    </div>
+
+</div>
+#include('fixed.html')
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<div class="pony-box">
+    <div class="pony-box-header">最新内容</div>
+    <div class="pony-box-body">
+        <div cms:articleRank type="latest" size="10" categoryId="3">
+            <a th:text="${item.title}" th:href="${item.articleUrl}"></a>
+        </div>
+    </div>
+</div>
+<div class="pony-box">
+    <div class="pony-box-header">我的标签</div>
+    <div class="pony-box-body">
+        <div cms:tagList>
+            <a th:text="${item.tagName}" th:href="${item.tagUrl}"></a>
+        </div>
+    </div>
+</div>
+<div class="pony-box">
+    <div class="pony-box-header">阅读排行榜</div>
+    <div class="pony-box-body">
+        <div cms:articleRank type="hot" size="10" categoryId="5">
+            <a th:text="${item.title}" th:href="${item.articleUrl}"></a>
+
+        </div>
+    </div>
+</div>
+<div class="pony-box">
+    <div class="pony-box-header">推荐排行榜</div>
+    <div class="pony-box-body">
+        <div cms:articleRank type="recommend" categoryId="5">
+            <a th:text="${item.title}" th:href="${item.articleUrl}"></a>
+
+        </div>
+    </div>
+</div>
+<div class="pony-box">
+    <div class="pony-box-header">最新评论</div>
+    <div class="pony-box-body">
+        <div cms:articleRank type="latest">
+            <a th:text="${item.title}" th:href="${item.articleUrl}"></a>
+        </div>
+    </div>
+</div>
+<div class="pony-box">
+    <div class="pony-box-header">我的页面</div>
+    <div class="pony-box-body">
+        <div cms:pageList>
+            <a th:href="${item.pageUrl}" th:text="${item.name}" target="_blank"></a>
+        </div>
+    </div>
+</div>

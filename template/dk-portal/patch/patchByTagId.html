@@ -1,0 +1,14 @@
+#define patchByTagId(tagId)
+<div class="patch-common">
+    <div class="patch-header">
+        <div class="patch-header-title">内容标签 #(tagId)</div>
+        <div class="patch-header-more">
+        </div>
+    </div>
+    <div class="patch-body">
+        #tagArticle({tagId:tagId})
+        <a href="#(item.articleUrl)">#(item.title)</a>
+        #end
+    </div>
+</div>
+#end

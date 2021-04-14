@@ -1,0 +1,90 @@
+<style>
+    a:hover {
+        text-decoration: none;
+    }
+
+    tr:hover .preview-btn {
+        display: inline-block;
+    }
+
+    .preview-btn {
+        display: none;
+        margin-left: 10px;
+        padding: 0 5px;
+        width: 12px;
+        height: 12px;
+        background: url("/image/icon/preview.png") no-repeat center;
+        background-size: contain;
+        vertical-align: middle;
+    }
+</style>
+
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="page-body-top-left">评论管理</h3>
+
+        <div class="page-body-top-right">
+
+        </div>
+    </div>
+
+
+    <div class="page-body-main">
+        <table class="table-pro">
+            <tr>
+                <td style="width:50px;">#getMessage('noun.id')</td>
+                <td style="width: 120px">用户</td>
+                <td style="width:80px;">文章编号</td>
+                <td>评论内容</td>
+                <td style="width: 140px;">#getMessage('noun.publishAt')</td>
+                <td style="width: 100px;">状态</td>
+
+                <td style="width:150px;">#getMessage('noun.op')</td>
+            </tr>
+
+            #if(list.size() == 0)
+            <tr>
+                <td colspan="10">#getMessage('noun.noData')</td>
+            </tr>
+            #end
+
+            #for(item:list)
+            <tr>
+                <td>#(item.id)</td>
+                <td>#(item.nickname)(#(item.accountId))</td>
+                <td>#(item.articleId)</td>
+                <td>#(item.content)</td>
+                <td>#date(item.publishAt,'yyyy-MM-dd HH:mm')</td>
+                <td>#(item.isShow?'已审核通过':'待审核')</td>
+
+                <td>
+                    <div class="icon-btn icon-btn-accept btn-comment-accept" data-id="#(item.id)"></div>
+                    <div class="icon-btn icon-btn-delete btn-comment-delete" title="删除"
+                         onclick="return confirm('确定?')" data-id="#(item.id)">
+                    </div>
+                </td>
+            </tr>
+            #end
+        </table>
+        #adminPageNav()
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('.btn-comment-accept').on("click", function () {
+            var id = $(this).data('id');
+            $.post("/admin/content/commentAccept", {id: id}, function () {
+                location.reload();
+            })
+        });
+        $('.btn-comment-delete').on("click", function () {
+            var id = $(this).data('id');
+            $.post("/admin/content/commentDelete", {id: id}, function () {
+                location.reload();
+            })
+        });
+
+    })
+</script>
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>#(global.setting.siteTitle)</title>
+    <link type="text/css" href="/template/dkcms-cc/assets/site.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?58534a2ac3840a55a0f64baefdf8b450";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<nav>
+    <div class="wrapper nav">
+        <a class="logo" href="/">
+            <img src="#(templatePath)logo.png" alt="#(global.setting.siteTitle)"/>
+        </a>
+        <a class="site-title" href="/">
+            <span>多客内容管理系统</span>
+            <span>https://dkcms.cc</span>
+
+        </a>
+        <div class="nav-right">
+            <a href="#homePageUrl()">首页</a>
+            #categoryList()
+            <a href="#(item.categoryUrl)">#(item.categoryName)</a>
+            #end
+            <a href="#">讨论社区</a>
+            <a href="#">开源软件</a>
+            #pageList()
+
+            <a class="page" href="#(item.pageUrl)">#(item.name)</a>
+            #end
+        </div>
+    </div>
+
+</nav>

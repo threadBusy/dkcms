@@ -1,0 +1,54 @@
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">广告类目</h3>
+    </div>
+
+    <div class="page-body-main dk-auto-form" data-action="/admin/ad/saveCategory" data-success="/admin/ad/category">
+
+        <table class="table-pro">
+            <tr>
+                <td style="width:50px;">编号</td>
+                <td>类目</td>
+            </tr>
+
+            #if(list.size()==0)
+            <tr>
+                <td colspan="2">无数据</td>
+            </tr>
+            #end
+
+            #for(item:list)
+            <tr>
+                <td>#(item.id)</td>
+                <td>#(item.categoryName)</td>
+            </tr>
+            #end
+        </table>
+
+        <table class="table-pro mt-10">
+            <tr>
+                <td colspan="2">新增一个分类</td>
+            </tr>
+            <tr>
+                <td>分类名称</td>
+                <td>
+                    <input type="text" name="category_name"
+                           class="input_02"
+                           data-require="请填写分类名称"
+                           style="width: 300px;">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="btn_primary dk-auto-submit-btn">
+                        保存
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+</div>
+

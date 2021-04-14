@@ -1,0 +1,51 @@
+<div class="page-body">
+    <div class="page-body-main">
+        <h3 class="left">广告位管理</h3>
+        <div class="right">
+            <a href="#/admin/ad/index" class="btn_primary">返回</a>
+        </div>
+    </div>
+
+    <div class="page-body-main">
+        <table class="table-pro">
+            <tr>
+                <td>广告位</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>名称</td>
+                <td>#(ad.name)</td>
+            </tr>
+            <tr>
+                <td>所在分类</td>
+                <td>#(categoryMap[ad.categoryId])</td>
+            </tr>
+
+            <tr>
+                <td>描述</td>
+                <td>#(ad.description)</td>
+            </tr>
+            <tr>
+                <td>尺寸</td>
+                <td>
+                    #(ad.width)px x #(ad.height)px
+                </td>
+            </tr>
+            <tr>
+                <td>内容</td>
+                <td>#(ad.content)</td>
+            </tr>
+
+            <tr>
+                <td>代码</td>
+                <td> thymeleaf 标签 : #(ad.escapeCode1) <br>
+                    enjoy 标签 : #(ad.escapeCode2)
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+</div>
+

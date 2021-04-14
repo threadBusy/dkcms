@@ -1,0 +1,81 @@
+<style>
+    a:hover {
+        text-decoration: none;
+    }
+
+    tr:hover .preview-btn {
+        display: inline-block;
+    }
+
+    .preview-btn {
+        display: none;
+        margin-left: 10px;
+        padding: 0 5px;
+        width: 12px;
+        height: 12px;
+        background: url("/image/icon/preview.png") no-repeat center;
+        background-size: contain;
+        vertical-align: middle;
+    }
+</style>
+
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">#getMessage('noun.article')  #getMessage('noun.recycle') </h3>
+        <div class="right">
+            <a data-href="/admin/content/list" class="btn_primary">#getMessage('verb.back') </a>
+        </div>
+    </div>
+
+
+    <div class="page-body-main">
+        <table class="table-pro">
+            <tr>
+                <td style="width:50px;">#getMessage('noun.id')</td>
+                <td>#getMessage('noun.title') </td>
+                <td style="width: 140px;">#getMessage('noun.publishAt') </td>
+                <td style="width:150px;">#getMessage('noun.op') </td>
+            </tr>
+
+            #if(list.size() == 0)
+            <tr>
+                <td colspan="10">#getMessage('noun.noData')</td>
+            </tr>
+            #end
+
+            #for(item:list)
+            <tr>
+                <td>#(item.id)</td>
+                <td>
+                    <a
+                       href="/admin/category/edit?id=#(item.categoryId)">[#(item.categoryName)]</a>
+                    <a href="/admin/content/edit?id=#(item.id)">
+                        <span>#(item.title)</span>
+                    </a>
+                    <a target="_blank" class="preview-btn"
+                       href="/admin/site/article?articleId=#(item.id)"
+                       title="预览"></a>
+                </td>
+                <td >#date(item.publishDate,'yyyy-MM-dd HH:mm')</td>
+
+                <td>
+                    <a class="btn_01" data-href="/admin/content/edit?id=#(item.id)">修改</a>
+                    <a class="btn_01" data-href="/admin/content/draftPublish?id=#(item.id)">发布</a>
+                    <a class="btn_01" data-href="/admin/content/delete?id=#(item.id)" onclick="return confirm('确定?')">删除</a>
+                </td>
+            </tr>
+            #end
+
+
+        </table>
+        #adminPageNav()
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+    })
+</script>
+

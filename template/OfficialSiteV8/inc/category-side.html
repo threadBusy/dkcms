@@ -1,0 +1,40 @@
+<div class="page-side">
+    <div class="page-side-box">
+        <a href="">
+            <img src="/template/OfficialSiteV8/assets/img/news-top-shujiquzhang.png">
+        </a>
+    </div>
+
+    <div class="page-side-box site-info">
+        <img class="logo" src="#(global.setting.siteLogo)">
+        <div class="title">#(global.setting.siteTitle)</div>
+        <div>#(global.setting.siteDescription)</div>
+        <div>#(global.setting.siteContact)</div>
+    </div>
+    <div class="page-side-box">
+        <div class="page-side-box-title">热点推荐</div>
+
+        #articleRank({categoryId:0,type:'hot',limit:5,withChild:true})
+        <div class="content-list-item ">
+
+            <a style="font-size:14px;" href="#(item.articleUrl)">#(item.title)</a>
+
+
+        </div>
+        #end
+
+    </div>
+    <div class="page-side-box">
+        <div class="page-side-box-title">最新新闻</div>
+
+        #articleRank({categoryId:0,limit:5,withChild:true})
+        <div class="content-list-item ">
+
+            <a style="font-size:14px;" href="#(item.articleUrl)">#(item.title)</a>
+
+
+        </div>
+        #end
+
+    </div>
+</div>

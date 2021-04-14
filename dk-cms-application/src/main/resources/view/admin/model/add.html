@@ -1,0 +1,29 @@
+<div class="page-body">
+    <div class="page-body-main dk-auto-form" data-action="/admin/model/saveModel" data-success="/admin/model/index">
+
+        <input type="hidden" name="id" value="#(model.id)">
+        <table class="table-pro">
+            <tr>
+                <td colspan="2">#(action=='edit'?'新建':'修改') 数据模型</td>
+            </tr>
+
+            <tr>
+                <td>名称</td>
+                <td>
+                    <input type="text" name="model_name" value="#(model.modelName)"
+                           data-require="模型名称不能为空" class="input_02"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <div class="btn_primary dk-auto-submit-btn">保存
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+</div>

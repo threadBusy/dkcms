@@ -1,0 +1,22 @@
+<div th:replace="inc/header"></div>
+<div class="category-mianbaoxie">
+    <a href="javascript:void(0)">当前位置</a>
+    <a cms:navbar></a>
+</div>
+<main>
+    <article class="article">
+        <h3 class="article-title" th:text="${article.title}"></h3>
+
+        <div class="article-content" th:if="${article.coverImage}">
+            <img th:src="${article.coverImage}">
+        </div>
+        <div class="article-content" th:utext="${article.content}"></div>
+        <div class="meta article-meta">
+            <span th:text="'posted @ ' + ${#dates.format(article.publishDate,'yyyy-MM-dd')}"></span>
+        </div>
+    </article>
+    <aside>
+        <div th:replace="inc/aside"></div>
+    </aside>
+</main>
+<div th:replace="inc/footer"></div>

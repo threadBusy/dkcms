@@ -1,0 +1,85 @@
+<style>
+    a:hover {
+        text-decoration: none;
+    }
+
+    tr:hover .preview-btn {
+        display: inline-block;
+    }
+
+    .preview-btn {
+        display: none;
+        margin-left: 10px;
+        padding: 0 5px;
+        width: 12px;
+        height: 12px;
+        background: url("/image/icon/preview.png") no-repeat center;
+        background-size: contain;
+        vertical-align: middle;
+    }
+</style>
+
+<div class="page-body">
+    <div class="page-body-top">
+        <h3 class="left">#(tableTitle)</h3>
+        <div class="right">
+            <a href="#/admin/category/list" class="btn_primary">栏目管理
+
+            </a>
+            <a href="#/admin/content/add?categoryId=#(categoryId)" class="btn_primary">发布新内容
+
+            </a>
+            <a href="#/admin/content/recycleList" class="btn_primary">回收站
+
+            </a>
+        </div>
+    </div>
+
+    <div class="page-body-main">
+
+        <table class="table-pro">
+            <tr>
+                <td style="width:30px;">编号</td>
+                <td>标题</td>
+                <td style="width: 140px;">发布时间</td>
+                <td style="width: 40px;">显示</td>
+
+                <td style="width:150px;">操作</td>
+            </tr>
+
+            #if(list.size()==0)
+            <tr>
+                <td colspan="10">无数据</td>
+            </tr>
+            #end
+
+            #for(item:list)
+            <tr>
+                <td>#(item.id)</td>
+                <td>
+                    <a href="#/admin/category/edit?id=#(item.categoryId)">[#(item.categoryName)]</a>
+                    <a href="#admin//admin/content/edit?id=#(item.id)">
+                        <span>#(item.title)</span>
+                    </a>
+                    <a target="_blank" class="preview-btn"
+                       href="/site/article?articleId=#(item.id)"
+                       title="预览"></a>
+                </td>
+                <td>#date(item.publishDate,'yyyy-MM-dd HH:mm')</td>
+                <td>#(item.isShow==1?'显示':'隐藏')</td>
+                <td>
+                    <a class="icon-btn icon-btn-edit" title="编辑"
+                       href="#/admin/content/edit?id=#(item.id)"></a>
+                    <a class="icon-btn icon-btn-preview" title="预览"
+                       href="/site/article?articleId=#(item.id)" target="_blank"></a>
+                    <a class="icon-btn icon-btn-delete" title="删除"
+                       href="#/admin/content/moveInRecycle?id=#(item.id)"
+                       onclick="return confirm('确定?')"></a>
+                </td>
+            </tr>
+            #end
+        </table>
+        #adminPageNav()
+    </div>
+
+</div>

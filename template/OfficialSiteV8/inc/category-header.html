@@ -1,0 +1,63 @@
+#include('../patch/imageSlide.html')
+#include('../patch/patch-side-article-slide.html')
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <title>#getSetting('siteTitle')</title>
+
+    <meta name="Keywords" content="#getSetting('siteSeoKeywords')">
+    <meta name="Description" content="#getSetting('siteSeoDescription')">
+    <link type="text/css" href="/template/OfficialSiteV8/assets/css/dk-common.css" rel="stylesheet"/>
+    <link type="text/css" href="/template/OfficialSiteV8/assets/css/os-v8-style.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="/template/OfficialSiteV8/assets/js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="/template/OfficialSiteV8/assets/js/jquery.SuperSlide.2.1.3.js"></script>
+</head>
+<body>
+<div class="header-nav-bar-at-category">
+    <div class="wrapper grid-box nav-list">
+        <a class=" #(contextType=='SITE_HOMEPAGE'?'s':'')" href="#homePageUrl()">首页</a>
+        #categoryList(0)
+        <a href="#(item.categoryUrl)"
+           #if(categoryId==item.id)
+           class="s"
+           #end>#(item.categoryName)</a>
+        #end
+    </div>
+</div>
+<div style="border-bottom:1px solid #ccc;">
+    <div class="wrapper header-nav-top">
+        <div class="logo">
+            #if(global.setting.siteLogo)
+            <img src="#(global.setting.siteLogo)">
+            #else
+            #(global.setting.siteTitle)
+            #end
+        </div>
+        <div class="qr">
+            <img src="/template/OfficialSiteV8/assets/img/qrcode.png">
+            <p style="white-space: pre-wrap"> 扫码关注微信公众号</p>
+        </div>
+    </div>
+    <div class="wrapper category-mianbaoxie">
+        <span>当前位置 :</span>#mianbaoxie()
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $.post('/site/userInfo', {}, function (res) {
+            if (res.code === 0) {
+                $('#topLoginBox').hide();
+                $('#topUserBox').show();
+                $('#topUserBoxNick').text("欢迎你 : " + res.data.nickname)
+            } else {
+                $('#topLoginBox').show();
+                $('#topUserBox').hide();
+            }
+        })
+    })
+</script>

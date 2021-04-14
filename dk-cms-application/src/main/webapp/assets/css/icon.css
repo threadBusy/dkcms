@@ -1,0 +1,106 @@
+
+.icon {
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    vertical-align: bottom;
+
+}
+
+.icon-add-to-cart {
+    background-image: url("../../assets/icon/add-to-cart.png");
+}
+
+.icon-del-from-cart {
+    background-image: url("../../assets/icon/del-from-cart.png");
+}
+
+.icon-close-btn {
+    background-image: url("/assets/icon/close-btn.png");
+}
+
+.icon-checkbox {
+    background-image: url("/assets/icon/checkbox.png");
+    cursor: pointer;
+}
+
+.icon-checkbox-s {
+    background-image: url("/assets/icon/checkbox-s.png");
+    cursor: pointer;
+}
+
+.icon-menu-left {
+    background-image: url("/assets/icon/menu-left.png");
+}
+
+.icon-menu-right {
+    background-image: url("/assets/icon/menu-right.png");
+}
+
+.icon-loading {
+    background-image: url("/assets/icon/loading.png");
+}
+
+.icon-report {
+    background-image: url("/assets/icon/report.png");
+}
+
+.icon-change {
+    background-image: url("/assets/icon/change.png");
+}
+
+.icon-user {
+    background-image: url("/assets/icon/user.png");
+}
+
+.icon-reception {
+    background-image: url("/assets/icon/reception.png");
+}
+
+.icon-goods {
+    background-image: url("/assets/icon/goods.png");
+}
+
+.icon-plus {
+    background-image: url("/assets/icon/plus-large.png");
+}
+
+.icon-card {
+    background-image: url("/assets/icon/card.png");
+}
+
+.icon-client {
+    background-image: url("/assets/icon/client.png");
+}
+
+.icon-staff {
+    background-image: url("/assets/icon/staff.png");
+}
+
+.icon-store {
+    background-image: url("/assets/icon/store.png");
+}
+
+.icon-setting {
+    background-image: url("/assets/icon/setting.png");
+}
+
+.icon-logout {
+    background-image: url("/assets/icon/logout.png");
+}
+.icon-content {
+    background-image: url("/assets/icon/content.png");
+}
+
+
+.icon-ad {
+    background-image: url("/assets/icon/ad.png");
+}
+.icon-preview {
+    background-image: url("/assets/icon/preview.png");
+}
+
+

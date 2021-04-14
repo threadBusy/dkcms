@@ -1,0 +1,40 @@
+#include('inc/header.html')
+
+
+<div class="wrapper grid-box mt-20">
+    #include('inc/right-side.html')
+    <div class="page-main">
+
+        #@imageSlide(categoryId)
+        <div class="content-list">
+            #contentList({categoryId:categoryId})
+            <div class="content-list-item">
+                <div class="content-list-item-left">
+                    <img src="#(item.coverImage)" class="img">
+                </div>
+                <div class="content-list-item-right">
+                    <a href="#(item.articleUrl)" class="content-list-item-right-title">#(item.title)</a>
+                    <div class="content-list-item-right-summary">
+                        #(item.summary)
+                    </div>
+                    <div class="content-list-item-right-meta">
+                        <span>#date(item.publishDate,'M月d日')</span>
+                        <span>点击：#(item.click)</span>
+                        <span>评论: 12</span>
+                    </div>
+                </div>
+            </div>
+            #end
+        </div>
+
+        <div class="page-nav">
+            #pageNav()
+        </div>
+
+    </div>
+    #include('inc/left-side.html')
+
+</div>
+
+
+#include('inc/footer.html')
